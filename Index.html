@@ -100,13 +100,13 @@ nav.scrolled{box-shadow:0 4px 48px rgba(244,106,26,.12)}
 .st em{font-style:italic;font-weight:300;color:var(--orange)}
 .sb{font-size:1rem;color:var(--muted);line-height:1.78;max-width:520px;margin-top:14px}
 
+/* PROBLEM */
 #prob{background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:100px 72px}
 .pvis{position:relative}
 .pimg{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:32px;box-shadow:0 24px 80px rgba(26,10,0,.14)}
 .psc{position:absolute;bottom:-20px;right:-28px;background:var(--orange);color:#fff;border-radius:22px;padding:26px 30px;box-shadow:0 16px 48px rgba(244,106,26,.4)}
 .pscn{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:900;line-height:1}
 .psct{font-size:.8rem;opacity:.9;margin-top:5px;max-width:110px;line-height:1.4}
-
 .pills{display:flex;flex-direction:column;gap:14px;margin-top:36px}
 .pill{display:flex;align-items:flex-start;gap:14px;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:16px;transition:transform .25s var(--ease),box-shadow .25s}
 .pill:hover{transform:translateX(6px);box-shadow:0 8px 28px rgba(26,10,0,.08)}
@@ -114,6 +114,9 @@ nav.scrolled{box-shadow:0 4px 48px rgba(244,106,26,.12)}
 .pill strong{display:block;font-size:.9rem;color:var(--ink);font-weight:600;margin-bottom:2px}
 .pill span{font-size:.8rem;color:var(--muted);line-height:1.5}
 
+/* SOLUTION */
+#sol{background:var(--bg);padding:100px 72px}
+.shdr{text-align:center;margin-bottom:64px}
 .scards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .scard{border-radius:26px;overflow:hidden;background:var(--card);border:1px solid var(--border);transition:transform .3s var(--spring),box-shadow .3s}
 .scard:hover{transform:translateY(-10px);box-shadow:0 32px 80px rgba(26,10,0,.13)}
@@ -124,6 +127,8 @@ nav.scrolled{box-shadow:0 4px 48px rgba(244,106,26,.12)}
 .scard h3{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:700;margin-bottom:8px}
 .scard p{font-size:.85rem;color:var(--muted);line-height:1.65}
 
+/* BENTO */
+#feat{background:var(--cream);padding:100px 72px}
 .bg{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:60px}
 .bn{background:var(--card);border:1px solid var(--border);border-radius:26px;padding:36px;transition:transform .3s var(--spring),box-shadow .3s;overflow:hidden;position:relative}
 .bn:hover{transform:translateY(-4px);box-shadow:0 24px 64px rgba(26,10,0,.1)}
@@ -138,6 +143,8 @@ nav.scrolled{box-shadow:0 4px 48px rgba(244,106,26,.12)}
 .bn p{font-size:.82rem;line-height:1.65;color:var(--muted)}
 .bn-dk p,.bn-or p,.bn-gd p{color:rgba(255,255,255,.88)}
 
+/* TESTIMONIALS */
+#testi{background:var(--bg);padding:100px 72px}
 .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:60px}
 .tc{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:34px;transition:transform .3s var(--spring),box-shadow .3s;position:relative;overflow:hidden}
 .tc:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(26,10,0,.1)}
@@ -151,6 +158,7 @@ nav.scrolled{box-shadow:0 4px 48px rgba(244,106,26,.12)}
 .tr{font-size:.75rem;color:var(--muted)}
 .tc.feat .tn,.tc.feat .tr{color:rgba(255,255,255,.9)}
 
+/* GAMES TEASER */
 #gt{padding:100px 72px;background:linear-gradient(165deg,#1A0A00 0%,#2E1200 55%,#1A0A00 100%);position:relative;overflow:hidden;text-align:center;color:#fff}
 #gt .sb{color:rgba(255,255,255,.78)}
 .gp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:860px;margin:56px auto 0}
@@ -160,12 +168,14 @@ nav.scrolled{box-shadow:0 4px 48px rgba(244,106,26,.12)}
 .gpcn{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:8px}
 .gpcd{font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.55}
 
+/* CTA */
 #cta-s{background:var(--cream);padding:100px 72px}
 .cta-box{background:var(--orange);border-radius:38px;padding:72px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:48px;position:relative;overflow:hidden}
 .cta-box::before{content:'🐱';position:absolute;right:180px;top:50%;transform:translateY(-50%);font-size:12rem;opacity:.08;pointer-events:none}
 .ct{font-family:'Fraunces',serif;font-size:clamp(1.9rem,3.2vw,2.9rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:12px}
 .cs{font-size:1rem;color:rgba(255,255,255,.82)}
 
+/* FOOTER */
 footer{background:var(--ink);padding:80px 72px 40px;color:#fff}
 .ftop{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.1)}
 .flo{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:900;color:#fff;display:flex;align-items:center;gap:10px;margin-bottom:18px}
@@ -266,8 +276,81 @@ footer{background:var(--ink);padding:80px 72px 40px;color:#fff}
   <div class="mqi">↩️ 30-Day Returns<span class="s">✦</span></div><div class="mqi">🎮 Fun Pet Games<span class="s">✦</span></div>
 </div></div>
 
-<!-- Paste the rest of your original sections here: #prob, #sol, #feat, #testi, #gt, #cta-s, footer -->
-<!-- (They are the same as your original file, just with brand name changed to "Meow Meow") -->
+<section id="prob">
+  <div class="pvis reveal">
+    <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=700&q=85" alt="Cat" class="pimg"/>
+    <div class="psc"><div class="pscn">73%</div><div class="psct">of cats show nutritional deficiency signs</div></div>
+  </div>
+  <div class="reveal">
+    <div class="sl">The Problem</div>
+    <h2 class="st">Generic Food is <em>Failing</em> Your Pet</h2>
+    <p class="sb">Most supermarket cat food is packed with fillers, meat by-products, and artificial additives — a slow-burn health problem hiding behind colourful packaging.</p>
+    <div class="pills">
+      <div class="pill"><div class="pill-ic">⚠️</div><div><strong>Mystery Meat Derivatives</strong><span>Could be anything. Named proteins are the only way to know what your cat's eating.</span></div></div>
+      <div class="pill"><div class="pill-ic">💧</div><div><strong>Chronic Dehydration</strong><span>Dry-only diets contribute to kidney disease in 1 in 3 cats over their lifetime.</span></div></div>
+      <div class="pill"><div class="pill-ic">🧪</div><div><strong>Artificial Preservatives</strong><span>BHA, BHT, ethoxyquin — chemicals your cat's body was never designed to process.</span></div></div>
+      <div class="pill"><div class="pill-ic">📦</div><div><strong>Zero Variety</strong><span>Eating the same processed meal daily causes appetite fatigue and nutritional gaps.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="sol" class="sec">
+  <div class="shdr reveal"><div class="sl">Our Solution</div><h2 class="st">A Complete Cat <em>Care Ecosystem</em></h2><p class="sb">From vet-formulated meals to enrichment toys to professional doorstep care.</p></div>
+  <div class="scards">
+    <div class="scard reveal">
+      <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=600&q=80" alt="Food" class="scard-img"/>
+      <div class="scard-body"><div class="scard-ic">🍗</div><h3>Premium Real-Meat Recipes</h3><p>Named proteins — tuna, chicken, salmon — with zero grain fillers. Grain-free, vet-formulated, utterly irresistible.</p></div>
+    </div>
+    <div class="scard reveal" style="transition-delay:.1s">
+      <img src="https://images.unsplash.com/photo-1601758064693-20a7e547e2b5?w=600&q=80" alt="Toys" class="scard-img"/>
+      <div class="scard-body"><div class="scard-ic">🧶</div><h3>Enrichment Toys & Accessories</h3><p>Interactive toys, cosy beds, scratching posts — keep your cat mentally stimulated and physically at their best.</p></div>
+    </div>
+    <div class="scard reveal" style="transition-delay:.2s">
+      <img src="https://images.unsplash.com/photo-1609861869624-2bae4de3c97e?w=600&q=80" alt="Care" class="scard-img"/>
+      <div class="scard-body"><div class="scard-ic">🏥</div><h3>Professional Doorstep Care</h3><p>Certified groomers, vet consultations, and trained pet sitters — available at your door whenever needed.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="feat" class="sec">
+  <div class="reveal"><div class="sl">Why Choose Us</div><h2 class="st">Built Around Your <em>Cat's Needs</em></h2></div>
+  <div class="bg">
+    <div class="bn bn1 bn-dk reveal"><div class="bnn">01</div><div class="bni">🔬</div><h3>Vet-Formulated Nutrition</h3><p>Every recipe reviewed by certified feline nutritionists. Tested for palatability, balanced macros, and clinical safety.</p></div>
+    <div class="bn bn2 bn-or reveal" style="transition-delay:.08s"><div class="bbn">₹499</div><div class="bbl">subscription / month</div><p style="margin-top:14px">Premium nutrition shouldn't be a luxury. Plans start at ₹499/month — less than ₹17/day.</p></div>
+    <div class="bn bn3 reveal" style="transition-delay:.16s"><div class="bni">🌿</div><h3>100% Natural</h3><p>No artificial colours, synthetic flavours, or hidden fillers. What you read is what's inside.</p></div>
+    <div class="bn bn4 reveal" style="transition-delay:.0s"><div class="bni">⭐</div><div class="rstar">★★★★★</div><h3>Trusted by 10,000+ Cats</h3><p>From kittens to seniors across India — our community keeps growing every day.</p></div>
+    <div class="bn bn5 bn-gd reveal" style="transition-delay:.08s"><div class="bnn">05</div><div class="bni">🚚</div><h3>Same-Day Doorstep Delivery</h3><p>Available across 50+ cities. Fresh food, right when you need it. Track your order live.</p></div>
+    <div class="bn bn6 reveal" style="transition-delay:.16s"><div class="bni">↩️</div><h3>Happiness Guarantee</h3><p>Your cat doesn't like it? Instant refund or replacement — zero questions asked.</p></div>
+  </div>
+</section>
+
+<section id="testi" class="sec">
+  <div class="reveal" style="text-align:center;margin-bottom:60px"><div class="sl" style="justify-content:center">Cat Parents Love Us</div><h2 class="st">Don't Take Our <em>Word For It</em></h2></div>
+  <div class="tgrid">
+    <div class="tc reveal"><div class="tcs">★★★★★</div><p class="tcq">"My cat Mochi was a picky eater for three years. The moment I switched to Meow Meow's tuna recipe, she finished her bowl in minutes. I nearly cried."</p><div class="ta"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" class="tav"/><div><div class="tn">Priya Sharma</div><div class="tr">Cat mom to Mochi · Bengaluru</div></div></div></div>
+    <div class="tc feat reveal" style="transition-delay:.1s"><div class="tcs">★★★★★</div><p class="tcq">"The monthly subscription box is genuinely the best ₹599 I spend. Toys keep my two boys entertained for weeks and the food quality is unmatched by anything at the pet store."</p><div class="ta"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" class="tav"/><div><div class="tn">Arjun Kapoor</div><div class="tr">Cat dad to Thor & Loki · Mumbai</div></div></div></div>
+    <div class="tc reveal" style="transition-delay:.2s"><div class="tcs">★★★★★</div><p class="tcq">"As a veterinarian, I'm very selective about pet food brands. Meow Meow's ingredient quality genuinely impressed me. I now recommend it actively to my patients."</p><div class="ta"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" class="tav"/><div><div class="tn">Dr. Ananya Rao</div><div class="tr">Veterinarian · Hyderabad</div></div></div></div>
+  </div>
+</section>
+
+<section id="gt">
+  <div class="sl" style="justify-content:center;margin-bottom:10px">Fun Zone</div>
+  <h2 class="st" style="text-align:center">Play <em>Cat Games</em></h2>
+  <p class="sb" style="text-align:center;margin:14px auto">Fully playable browser games built right into the site. Your cat approves.</p>
+  <div class="gp-grid">
+    <a href="games.html#catch" class="gpc reveal"><div class="gpci">🐟</div><div class="gpcn">Fish Catcher</div><div class="gpcd">Guide your cat to catch falling fish before they hit the water. How many can you catch?</div><div class="gpcb">Play Now</div></a>
+    <a href="games.html#memory" class="gpc reveal" style="transition-delay:.1s"><div class="gpci">🃏</div><div class="gpcn">Paw Memory</div><div class="gpcd">Flip the cards and match all the cat emojis. Beat the clock to set a new high score!</div><div class="gpcb">Play Now</div></a>
+    <a href="games.html#whack" class="gpc reveal" style="transition-delay:.2s"><div class="gpci">🐭</div><div class="gpcn">Whack-a-Mouse</div><div class="gpcd">Mice keep popping up everywhere! Tap as fast as you can before time runs out.</div><div class="gpcb">Play Now</div></a>
+  </div>
+  <div style="text-align:center;margin-top:44px" class="reveal"><a href="games.html" class="btn btn-o btn-lg">🎮 Play All Games</a></div>
+</section>
+
+<section id="cta-s" class="sec">
+  <div class="cta-box reveal">
+    <div><h2 class="ct">Ready to Give Your Cat the Life They Deserve?</h2><p class="cs">Free delivery on your first order. No subscription required to start.</p></div>
+    <div class="cbtns"><a href="products.html" class="btn btn-dk btn-lg">Shop Products →</a><a href="services.html" class="btn btn-wh btn-lg">Our Services</a></div>
+  </div>
+</section>
 
 <footer>
   <div class="ftop">
