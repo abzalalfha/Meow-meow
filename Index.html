@@ -1,148 +1,620 @@
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meow Morsel</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meow Morsel — Premium Cat Food & Pet Care</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      min-height: calc(100vh - var(--nav-h));
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 64px;
+      padding: 80px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(249,192,106,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-content { animation: fadeUp 0.9s ease both; }
+    .hero-content .tag { animation: fadeUp 0.7s 0.1s ease both; }
+    .hero-content h1 {
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--brown) 0%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-content p {
+      font-size: 1.15rem;
+      max-width: 460px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to right, #fff6f0, #ffe9dc);
+```
+.hero-image-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  animation: fadeIn 1.1s 0.3s ease both;
+}
+.hero-blob {
+  position: absolute;
+  inset: -24px;
+  background: linear-gradient(135deg, var(--orange-lt) 0%, rgba(249,192,106,0.25) 100%);
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  animation: float 5s ease-in-out infinite;
+}
+.hero-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 40% 60% 55% 45% / 45% 55% 60% 40%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  box-shadow: var(--shadow-lg);
+  animation: float 5s ease-in-out infinite;
+}
+.hero-badge {
+  position: absolute;
+  bottom: 24px; left: -8px;
+  z-index: 2;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  padding: 14px 20px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeUp 0.8s 0.6s ease both;
+}
+.hero-badge .icon { font-size: 1.8rem; }
+.hero-badge strong { display: block; font-size: 0.95rem; color: var(--text); }
+.hero-badge span   { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ── TRUST BAR ──────────────────────────────────────────── */
+.trust-bar {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--warm-white);
+}
+.trust-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.trust-item .icon { font-size: 1.3rem; }
+
+/* ── PROBLEM ─────────────────────────────────────────────── */
+.problem { background: var(--warm-white); }
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 80px;
+}
+.problem-img-wrap { position: relative; }
+.problem-img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  aspect-ratio: 4/5;
+  box-shadow: var(--shadow-lg);
+}
+.problem-stat {
+  position: absolute;
+  top: 32px; right: -24px;
+  background: var(--orange);
+  color: #fff;
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.problem-stat strong { display: block; font-size: 2rem; font-weight: 700; }
+.problem-stat span   { font-size: 0.8rem; opacity: 0.85; }
+.problem-list { margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
+.problem-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+.problem-list li .bullet {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: #FDEBD4;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  margin-top: 2px;
 }
 
-header {
-    background: #ff7a30;
-    color: white;
-    padding: 20px;
-    text-align: center;
+/* ── SOLUTION ────────────────────────────────────────────── */
+.solution-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 56px;
 }
-
-.hero {
-    text-align: center;
-    padding: 60px 20px;
+.sol-card {
+  padding: 36px 28px;
+  border-radius: var(--radius-md);
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
-
-.hero img {
-    width: 300px;
-    border-radius: 20px;
-    margin-top: 20px;
+.sol-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+.sol-card .icon-wrap {
+  width: 56px; height: 56px;
+  border-radius: var(--radius-sm);
+  background: var(--orange-lt);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
 }
+.sol-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+.sol-card p  { font-size: 0.9rem; line-height: 1.65; }
 
-.hero h1 {
-    font-size: 42px;
+/* ── FEATURES ────────────────────────────────────────────── */
+.features { background: linear-gradient(160deg, var(--brown) 0%, #3A2010 100%); color: #fff; }
+.features .section-header h2 { color: #fff; }
+.features .section-header p  { color: rgba(255,255,255,0.6); }
+.features .divider { background: var(--amber); }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
-
-.btn {
-    background: #ff7a30;
-    color: white;
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 25px;
-    display: inline-block;
-    margin-top: 20px;
+.feature-item {
+  padding: 48px 36px;
+  background: rgba(255,255,255,0.04);
+  transition: background var(--transition);
 }
-
-.section {
-    padding: 50px 20px;
-    text-align: center;
+.feature-item:hover { background: rgba(255,255,255,0.08); }
+.feature-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--amber);
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 16px;
 }
+.feature-item h3 { color: #fff; font-size: 1.2rem; margin-bottom: 10px; }
+.feature-item p  { color: rgba(255,255,255,0.55); font-size: 0.9rem; }
 
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
+/* ── TESTIMONIALS ────────────────────────────────────────── */
+.testimonials { background: var(--warm-white); }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
 }
-
-.card {
-    background: white;
-    width: 260px;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: 0.3s;
+.testi-card {
+  padding: 32px 28px;
+  border-radius: var(--radius-md);
+  background: var(--cream);
+  border: 1px solid var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
-
-.card:hover {
-    transform: translateY(-10px);
+.testi-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.stars { color: var(--amber); font-size: 1rem; letter-spacing: 2px; margin-bottom: 16px; }
+.testi-card blockquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--text);
+  line-height: 1.65;
+  margin-bottom: 20px;
 }
-
-.card img {
-    width: 100%;
-    border-radius: 10px;
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-
-footer {
-    background: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
+.testi-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--orange-lt);
 }
-</style>
+.testi-author strong { display: block; font-size: 0.9rem; color: var(--text); }
+.testi-author span   { font-size: 0.8rem; color: var(--text-muted); }
 
+/* ── CTA BANNER ──────────────────────────────────────────── */
+.cta-banner {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dk) 100%);
+  border-radius: var(--radius-xl);
+  padding: 80px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  margin: 0 24px 96px;
+}
+.cta-banner::before {
+  content: '🐱';
+  position: absolute;
+  right: 80px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 8rem;
+  opacity: 0.12;
+}
+.cta-banner h2 { color: #fff; font-size: clamp(1.6rem, 3vw, 2.4rem); max-width: 480px; }
+.cta-banner p  { color: rgba(255,255,255,0.75); margin-top: 8px; font-size: 1.05rem; }
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero              { grid-template-columns: 1fr; text-align: center; }
+  .hero-content p    { margin: 0 auto 36px; }
+  .hero-btns         { justify-content: center; }
+  .hero-image-wrap   { order: -1; max-width: 360px; margin: 0 auto; }
+  .hero-badge        { left: 0; }
+  .problem-grid      { grid-template-columns: 1fr; }
+  .problem-stat      { right: 16px; }
+  .solution-cards    { grid-template-columns: 1fr; }
+  .features-grid     { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .cta-banner        { padding: 48px 32px; margin: 0 16px 64px; }
+}
+@media (max-width: 600px) {
+  .solution-cards    { grid-template-columns: 1fr; }
+  .cta-banner::before { display: none; }
+}
+```
+
+  </style>
 </head>
-
 <body>
 
-<header>
-    <h2>🐱 Meow Morsel</h2>
-    <p>Healthy Food & Fun Life for Your Cat</p>
-</header>
+<!-- ══ NAV ══════════════════════════════════════════════════ -->
 
-<section class="hero">
-    <h1>Because Your Cat Deserves More Than Just Food</h1>
-    <p>Nutritious meals, fun toys & trusted pet care</p>
-    <a href="#" class="btn">Get Started</a>
-    <br>
-    <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006" alt="Cute Cat">
-</section>
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="paw">🐾</span> Meow Morsel
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+    </ul>
+    <a href="products.html" class="btn btn-primary nav-cta">Order Now</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-<section class="section">
-    <h2>Our Products & Services</h2>
-    <div class="cards">
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="services.html">Services</a>
+  <a href="products.html" class="btn btn-primary" style="text-align:center;">Order Now</a>
+</div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1601758123927-196d7c42f3b6" alt="">
-            <h3>Healthy Cat Food</h3>
-            <p>High-quality, nutritious meals for your cat.</p>
-        </div>
+<main>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1598137264694-1c1c8f6b4d45" alt="">
-            <h3>Fun Toys</h3>
-            <p>Keep your cat active and entertained.</p>
-        </div>
+<!-- ══ HERO ═════════════════════════════════════════════════ -->
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1601758064220-7a6c3b6cbbf7" alt="">
-            <h3>Pet Care</h3>
-            <p>Door-to-door trusted pet sitting services.</p>
-        </div>
-
+<section class="section hero">
+  <div class="container" style="display:contents;">
+    <div class="hero-content container" style="padding-right:0;">
+      <span class="tag">🐱 Premium Pet Nutrition</span>
+      <h1>Because Your Cat Deserves More Than Just Food</h1>
+      <p>Handcrafted recipes, vet-approved ingredients, and doorstep delivery — everything your feline needs to thrive, every single day.</p>
+      <div class="hero-btns">
+        <a href="products.html" class="btn btn-primary btn-lg">Order Now →</a>
+        <a href="services.html" class="btn btn-outline btn-lg">Explore Plans</a>
+      </div>
     </div>
+    <div class="hero-image-wrap" style="padding-right:24px;">
+      <div class="hero-blob"></div>
+      <img
+        src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&q=80"
+        alt="Happy cat enjoying Meow Morsel"
+        class="hero-img"
+      />
+      <div class="hero-badge">
+        <div class="icon">⭐</div>
+        <div>
+          <strong>4.9 / 5 Rating</strong>
+          <span>From 3,200+ happy cat parents</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section">
-    <h2>Why Choose Us?</h2>
-    <p>✔ Safe & Nutritious<br>✔ Budget Friendly<br>✔ Trusted Caretakers</p>
+<!-- ══ TRUST BAR ════════════════════════════════════════════ -->
+
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item"><span class="icon">✅</span> Vet Approved</div>
+      <div class="trust-item"><span class="icon">🌿</span> Natural Ingredients</div>
+      <div class="trust-item"><span class="icon">🚚</span> Free Delivery</div>
+      <div class="trust-item"><span class="icon">↩️</span> 30-Day Returns</div>
+      <div class="trust-item"><span class="icon">🔒</span> Secure Payments</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROBLEM ═══════════════════════════════════════════════ -->
+
+<section class="section problem">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-img-wrap fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=700&q=80"
+          alt="Cat looking unhappy with generic food"
+          class="problem-img"
+        />
+        <div class="problem-stat">
+          <strong>73%</strong>
+          <span>of cats show signs of<br>nutritional deficiency</span>
+        </div>
+      </div>
+      <div class="fade-up">
+        <span class="tag">The Problem</span>
+        <div class="divider"></div>
+        <h2>Generic Cat Food is Failing Your Pet</h2>
+        <p style="margin-top:16px; font-size:1.05rem;">Most supermarket cat food is packed with fillers, artificial flavours, and low-quality by-products — a recipe for long-term health problems your vet won't mention until it's too late.</p>
+        <ul class="problem-list">
+          <li>
+            <span class="bullet">⚠️</span>
+            <span><strong style="color:var(--text);">Mystery ingredients</strong> — meat "derivatives" that could be anything but real protein.</span>
+          </li>
+          <li>
+            <span class="bullet">💧</span>
+            <span><strong style="color:var(--text);">Chronic dehydration</strong> — dry-only diets contribute to kidney disease in 1 in 3 cats.</span>
+          </li>
+          <li>
+            <span class="bullet">🧪</span>
+            <span><strong style="color:var(--text);">Artificial additives</strong> — colour, flavour, and preservatives your cat never signed up for.</span>
+          </li>
+          <li>
+            <span class="bullet">📦</span>
+            <span><strong style="color:var(--text);">Poor variety</strong> — eating the same processed meal daily causes appetite fatigue and stress.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section">
-    <h2>Happy Customers</h2>
-    <p>"My cat absolutely loves the food!"</p>
-    <p>"Super convenient and reliable service."</p>
+<!-- ══ SOLUTION ══════════════════════════════════════════════ -->
+
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header centered fade-up">
+      <span class="tag">Our Solution</span>
+      <div class="divider centered"></div>
+      <h2>A Complete Ecosystem for Your Cat's Happiness</h2>
+      <p>From nutrition to playtime to professional care — Meow Morsel covers every corner of your cat's well-being.</p>
+    </div>
+    <div class="solution-cards">
+      <div class="sol-card fade-up">
+        <div class="icon-wrap">🍗</div>
+        <h3>Premium Real-Meat Recipes</h3>
+        <p>Grain-free wet & dry food made from named proteins — chicken, tuna, salmon — no mystery fillers or artificial nasties.</p>
+      </div>
+      <div class="sol-card fade-up" style="transition-delay:0.1s;">
+        <div class="icon-wrap">🧶</div>
+        <h3>Enrichment Toys & Accessories</h3>
+        <p>Interactive toys, scratching posts, and comfort beds — everything to keep your cat mentally stimulated and physically fit.</p>
+      </div>
+      <div class="sol-card fade-up" style="transition-delay:0.2s;">
+        <div class="icon-wrap">🏥</div>
+        <h3>Professional Pet Care</h3>
+        <p>Certified groomers, vet consultations, and trained pet sitters available at your doorstep — whenever you need them.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section">
-    <h2>Start Your Cat’s Healthy Journey Today</h2>
-    <a href="#" class="btn">Order Now</a>
+<!-- ══ FEATURES ══════════════════════════════════════════════ -->
+
+<section class="section features">
+  <div class="container">
+    <div class="section-header fade-up" style="margin-bottom:56px;">
+      <span class="tag" style="background:rgba(249,192,106,0.15); color:var(--amber);">Why Choose Us</span>
+      <div class="divider"></div>
+      <h2>Built Around Your Cat's Needs</h2>
+      <p style="color:rgba(255,255,255,0.6);">We didn't just make another pet food brand. We built a standard.</p>
+    </div>
+    <div class="features-grid fade-up">
+      <div class="feature-item">
+        <div class="feature-num">01</div>
+        <h3>Vet-Formulated Nutrition</h3>
+        <p>Every recipe is reviewed by certified feline nutritionists and tested for palatability, balance, and safety.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">02</div>
+        <h3>Budget-Friendly Plans</h3>
+        <p>Subscription boxes starting at ₹499/month. Premium nutrition shouldn't be a luxury — it should be the default.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">03</div>
+        <h3>Trusted by 10,000+ Cats</h3>
+        <p>From tiny kittens to senior cats, over 10,000 feline families trust Meow Morsel across India every month.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">04</div>
+        <h3>100% Natural Ingredients</h3>
+        <p>No artificial colours. No synthetic flavours. No hidden fillers. What you read on the label is exactly what's inside.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">05</div>
+        <h3>Doorstep Delivery</h3>
+        <p>Same-day and next-day delivery across 50+ cities. Fresh food, right when you need it, no compromise.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">06</div>
+        <h3>Happiness Guarantee</h3>
+        <p>Your cat doesn't like it? We'll refund, replace, or swap — no questions asked, no awkward returns process.</p>
+      </div>
+    </div>
+  </div>
 </section>
+
+<!-- ══ TESTIMONIALS ══════════════════════════════════════════ -->
+
+<section class="section testimonials">
+  <div class="container">
+    <div class="section-header centered fade-up">
+      <span class="tag">Testimonials</span>
+      <div class="divider centered"></div>
+      <h2>Cat Parents Love Meow Morsel</h2>
+      <p>Don't take our word for it — here's what real customers and their cats have to say.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card fade-up">
+        <div class="stars">★★★★★</div>
+        <blockquote>"My cat Mochi was a picky eater for three years. The moment I switched to Meow Morsel's tuna recipe, she finished her bowl in minutes. I nearly cried."</blockquote>
+        <div class="testi-author">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Priya S." class="testi-avatar" />
+          <div>
+            <strong>Priya Sharma</strong>
+            <span>Cat mom to Mochi, Bengaluru</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up" style="transition-delay:0.1s;">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The monthly subscription box is genuinely the best ₹599 I spend. The toys keep my two boys entertained for weeks and the food quality is unmatched."</blockquote>
+        <div class="testi-author">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Arjun K." class="testi-avatar" />
+          <div>
+            <strong>Arjun Kapoor</strong>
+            <span>Cat dad to Thor & Loki, Mumbai</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up" style="transition-delay:0.2s;">
+        <div class="stars">★★★★★</div>
+        <blockquote>"As a vet, I'm very selective about pet food brands. Meow Morsel's ingredient quality and nutritional balance genuinely impressed me. I now recommend it to my patients."</blockquote>
+        <div class="testi-author">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Dr. Ananya R." class="testi-avatar" />
+          <div>
+            <strong>Dr. Ananya Rao</strong>
+            <span>Veterinarian, Hyderabad</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BANNER ════════════════════════════════════════════ -->
+
+<div class="cta-banner fade-up">
+  <div>
+    <h2>Start Your Cat's Journey to Better Health</h2>
+    <p>Free delivery on your first order. No subscription required.</p>
+  </div>
+  <a href="products.html" class="btn btn-white btn-lg">Shop Now →</a>
+</div>
+
+</main>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
 
 <footer>
-    <p>© 2026 Meow Morsel | All Rights Reserved</p>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo"><span class="paw">🐾</span> Meow Morsel</div>
+        <p>Premium cat food, accessories and professional pet care — delivered to your doorstep across India.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="services.html">Services</a>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="products.html">Wet Food</a>
+        <a href="products.html">Dry Food</a>
+        <a href="products.html">Toys</a>
+        <a href="products.html">Combo Kits</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Contact Us</a>
+        <a href="#">FAQ</a>
+        <a href="#">Shipping Policy</a>
+        <a href="#">Returns</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Meow Morsel. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" title="Instagram">📸</a>
+        <a href="#" title="Twitter">🐦</a>
+        <a href="#" title="Facebook">👤</a>
+        <a href="#" title="YouTube">▶️</a>
+      </div>
+    </div>
+  </div>
 </footer>
+
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+
+  // Intersection Observer for fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
