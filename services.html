@@ -1,1 +1,575 @@
+<!DOCTYPE html>
 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Meow Morsel</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── PAGE HERO ──────────────────────────────────────────── */
+    .page-hero {
+      background: linear-gradient(160deg, var(--cream) 0%, var(--orange-lt) 100%);
+      padding: 80px 0 64px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero h1 { margin-bottom: 16px; }
+    .page-hero p  { font-size: 1.1rem; max-width: 520px; margin: 0 auto; }
+
+```
+/* ── SERVICE CARDS ───────────────────────────────────────── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.service-card {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+.service-img-wrap {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.service-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.service-card:hover .service-img-wrap img { transform: scale(1.06); }
+.service-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(44,22,8,0.55), transparent 60%);
+}
+.service-icon-badge {
+  position: absolute;
+  bottom: 16px; left: 20px;
+  font-size: 2.2rem;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+.service-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
+.service-body h3 { font-size: 1.25rem; margin-bottom: 10px; }
+.service-body p  { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; flex: 1; }
+
+.service-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.service-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--orange);
+}
+.service-price span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* ── FEATURED SERVICE ────────────────────────────────────── */
+.featured-service {
+  background: linear-gradient(135deg, var(--brown) 0%, #3A2010 100%);
+  border-radius: var(--radius-xl);
+  padding: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 64px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 96px;
+}
+.featured-service::after {
+  content: '📦';
+  position: absolute;
+  right: -20px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 14rem;
+  opacity: 0.06;
+  pointer-events: none;
+}
+.featured-service .tag { background: rgba(249,192,106,0.15); color: var(--amber); }
+.featured-service h2   { color: #fff; margin-bottom: 16px; }
+.featured-service p    { color: rgba(255,255,255,0.65); font-size: 1.05rem; line-height: 1.7; }
+
+.subscription-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 28px 0;
+}
+.perk-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.92rem;
+}
+.perk-row .check {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--amber);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+  color: var(--brown);
+  font-weight: 700;
+}
+
+.sub-img {
+  border-radius: var(--radius-lg);
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  box-shadow: var(--shadow-lg);
+}
+
+.price-tag-big {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  background: rgba(249,192,106,0.15);
+  border: 1.5px solid rgba(249,192,106,0.3);
+  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  margin-top: 16px;
+}
+.price-tag-big .amount { font-size: 2.4rem; font-weight: 700; color: var(--amber); }
+.price-tag-big .period { font-size: 0.9rem; color: rgba(255,255,255,0.5); }
+
+/* ── HOW IT WORKS ────────────────────────────────────────── */
+.how-it-works { background: var(--warm-white); }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  position: relative;
+}
+.steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 48px; left: calc(33.33% / 2);
+  right: calc(33.33% / 2);
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--orange) 0, var(--orange) 8px, transparent 8px, transparent 16px);
+  z-index: 0;
+}
+.step {
+  text-align: center;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+}
+.step-num {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  box-shadow: 0 8px 32px rgba(244,123,32,0.3);
+  transition: transform var(--transition);
+}
+.step:hover .step-num { transform: scale(1.1); }
+.step h3 { font-size: 1.15rem; margin-bottom: 10px; }
+.step p   { font-size: 0.88rem; line-height: 1.6; }
+
+/* ── WHY CHOOSE ──────────────────────────────────────────── */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.why-card {
+  display: flex;
+  gap: 20px;
+  padding: 28px;
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.why-icon {
+  width: 52px; height: 52px;
+  border-radius: var(--radius-sm);
+  background: var(--orange-lt);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.why-card h3  { font-size: 1rem; margin-bottom: 6px; }
+.why-card p   { font-size: 0.85rem; line-height: 1.6; }
+
+/* ── CTA ─────────────────────────────────────────────────── */
+.services-cta {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dk) 100%);
+  border-radius: var(--radius-xl);
+  padding: 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin: 0 24px 96px;
+}
+.services-cta::before, .services-cta::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.services-cta::before {
+  width: 400px; height: 400px;
+  top: -200px; left: -100px;
+}
+.services-cta::after {
+  width: 300px; height: 300px;
+  bottom: -150px; right: -50px;
+}
+.services-cta h2 {
+  color: #fff;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  margin-bottom: 16px;
+}
+.services-cta p { color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 480px; margin: 0 auto 36px; }
+.cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .services-grid     { grid-template-columns: 1fr; }
+  .featured-service  { grid-template-columns: 1fr; padding: 48px 32px; gap: 40px; }
+  .steps-grid        { grid-template-columns: 1fr; }
+  .steps-grid::before { display: none; }
+  .step              { padding: 0 16px 40px; }
+  .why-grid          { grid-template-columns: 1fr; }
+  .services-cta      { padding: 56px 32px; margin: 0 16px 64px; }
+}
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════════ -->
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="paw">🐾</span> Meow Morsel
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+    </ul>
+    <a href="products.html" class="btn btn-primary nav-cta">Order Now</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="services.html">Services</a>
+  <a href="products.html" class="btn btn-primary" style="text-align:center;">Order Now</a>
+</div>
+
+<main>
+
+<!-- ══ PAGE HERO ════════════════════════════════════════════ -->
+
+<div class="page-hero">
+  <div class="container">
+    <span class="tag">🏡 Our Services</span>
+    <h1>Care That Comes to You</h1>
+    <p>Professional pet care services delivered at your door — because your cat deserves five-star treatment without leaving home.</p>
+  </div>
+</div>
+
+<!-- ══ SERVICES ══════════════════════════════════════════════ -->
+
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header centered fade-up">
+      <div class="divider centered"></div>
+      <h2>Everything Your Cat Needs, At Your Doorstep</h2>
+      <p>From grooming to sitting to curated boxes — we bring premium pet care straight to your home.</p>
+    </div>
+
+```
+<div class="services-grid">
+
+  <!-- Service 1 -->
+  <div class="service-card fade-up">
+    <div class="service-img-wrap">
+      <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=700&q=80" alt="Door-to-door pet care" />
+      <div class="service-overlay"></div>
+      <span class="service-icon-badge">🏠</span>
+    </div>
+    <div class="service-body">
+      <span class="tag" style="margin-bottom:12px;">Most Popular</span>
+      <h3>Door-to-Door Pet Care</h3>
+      <p>Our certified pet care specialists come directly to your home for grooming, wellness checks, nail trims, and basic health assessments. No stressful carrier trips — your cat stays calm in familiar surroundings.</p>
+      <div class="service-meta">
+        <div class="service-price">
+          ₹ 599 / visit
+          <span>First visit ₹399 (33% off)</span>
+        </div>
+        <a href="#cta" class="btn btn-primary">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service 2 -->
+  <div class="service-card fade-up" style="transition-delay:0.1s;">
+    <div class="service-img-wrap">
+      <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=700&q=80" alt="Pet sitting" />
+      <div class="service-overlay"></div>
+      <span class="service-icon-badge">💤</span>
+    </div>
+    <div class="service-body">
+      <h3>Professional Pet Sitting</h3>
+      <p>Trained, background-verified pet sitters who stay with your cat while you travel. Includes feeding, playtime, litter cleaning, and daily photo updates sent straight to your phone.</p>
+      <div class="service-meta">
+        <div class="service-price">
+          ₹ 799 / day
+          <span>Weekly packages from ₹4,499</span>
+        </div>
+        <a href="#cta" class="btn btn-primary">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service 3 -->
+  <div class="service-card fade-up" style="transition-delay:0.2s;">
+    <div class="service-img-wrap">
+      <img src="https://images.unsplash.com/photo-1609861869624-2bae4de3c97e?w=700&q=80" alt="Vet consultation" />
+      <div class="service-overlay"></div>
+      <span class="service-icon-badge">🩺</span>
+    </div>
+    <div class="service-body">
+      <h3>Online Vet Consultations</h3>
+      <p>Connect with licensed veterinarians via video call within minutes. Get advice on diet, behaviour, symptoms, and medication — 24/7, from the comfort of your couch.</p>
+      <div class="service-meta">
+        <div class="service-price">
+          ₹ 299 / session
+          <span>Unlimited plan ₹999/month</span>
+        </div>
+        <a href="#cta" class="btn btn-primary">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ══ SUBSCRIPTION BOX ═════════════════════════════════════ -->
+
+<section class="section-sm" style="background:var(--cream);">
+  <div class="container">
+    <div class="featured-service fade-up">
+      <div>
+        <span class="tag">🌟 Fan Favourite</span>
+        <h2>The Monthly Meow Box</h2>
+        <p>A curated mystery box of premium cat food, toys, treats, and accessories — hand-picked by our feline behaviour experts and delivered every month.</p>
+        <div class="subscription-perks">
+          <div class="perk-row"><div class="check">✓</div> 4–6 full-size products every month</div>
+          <div class="perk-row"><div class="check">✓</div> Personalised to your cat's age, breed & taste</div>
+          <div class="perk-row"><div class="check">✓</div> Includes exclusive subscriber-only products</div>
+          <div class="perk-row"><div class="check">✓</div> Free shipping, pause or cancel anytime</div>
+          <div class="perk-row"><div class="check">✓</div> Worth ₹1,500+ in products, delivered for less</div>
+        </div>
+        <div class="price-tag-big">
+          <span class="amount">₹599</span>
+          <span class="period">&nbsp;/ month</span>
+        </div>
+        <div style="margin-top:24px;">
+          <a href="#cta" class="btn btn-white btn-lg">Subscribe Now →</a>
+        </div>
+      </div>
+      <div>
+        <img
+          src="https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?w=700&q=80"
+          alt="Monthly subscription box"
+          class="sub-img"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══════════════════════════════════════════ -->
+
+<section class="section how-it-works">
+  <div class="container">
+    <div class="section-header centered fade-up">
+      <span class="tag">Simple Process</span>
+      <div class="divider centered"></div>
+      <h2>Getting Started is Easy</h2>
+      <p>From booking to your cat's happy face — three simple steps, zero hassle.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step fade-up">
+        <div class="step-num">1</div>
+        <h3>Choose Your Service</h3>
+        <p>Browse our services or subscription plans, pick what your cat needs most, and select a convenient date and time slot from our calendar.</p>
+      </div>
+      <div class="step fade-up" style="transition-delay:0.12s;">
+        <div class="step-num">2</div>
+        <h3>We Come to You</h3>
+        <p>A vetted, trained Meow Morsel specialist arrives at your door at your chosen time — with everything they need, no preparation required.</p>
+      </div>
+      <div class="step fade-up" style="transition-delay:0.24s;">
+        <div class="step-num">3</div>
+        <h3>Happy Cat, Happy You</h3>
+        <p>Your cat gets expert care in their own space. You get a full service report with photos, and can re-book in one tap — simple as that.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY CHOOSE ════════════════════════════════════════════ -->
+
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header centered fade-up">
+      <span class="tag">Our Promise</span>
+      <div class="divider centered"></div>
+      <h2>Why Pet Parents Trust Us</h2>
+      <p>We've built every service around one goal: your cat's comfort and safety.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-icon">🔍</div>
+        <div>
+          <h3>Background-Verified Specialists</h3>
+          <p>Every Meow Morsel care specialist is background-checked, trained in feline behaviour, and insured — so you can trust who's in your home.</p>
+        </div>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.07s;">
+        <div class="why-icon">📸</div>
+        <div>
+          <h3>Real-Time Photo Updates</h3>
+          <p>Get live updates with photos and notes from your cat's session, delivered directly to your phone via our WhatsApp integration.</p>
+        </div>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.14s;">
+        <div class="why-icon">⭐</div>
+        <div>
+          <h3>4.9 Star Average Rating</h3>
+          <p>Over 8,000 home service visits completed with a 4.9/5 average rating from cat parents across Bengaluru, Mumbai, and Hyderabad.</p>
+        </div>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.21s;">
+        <div class="why-icon">↩️</div>
+        <div>
+          <h3>Satisfaction Guarantee</h3>
+          <p>Not satisfied with any visit? We'll re-service for free or issue a full refund — no questions asked and no hoops to jump through.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ═══════════════════════════════════════════════════ -->
+
+<div class="services-cta fade-up" id="cta">
+  <h2>Ready to Treat Your Cat Like Royalty?</h2>
+  <p>Book a service, start a subscription, or grab a combo box — your cat's best life starts today.</p>
+  <div class="cta-btns">
+    <a href="products.html" class="btn btn-white btn-lg">Shop Products →</a>
+    <a href="#" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.5); color:#fff;">Book a Service</a>
+  </div>
+</div>
+
+</main>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo"><span class="paw">🐾</span> Meow Morsel</div>
+        <p>Premium cat food, accessories and professional pet care — delivered to your doorstep across India.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="services.html">Services</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="services.html">Pet Care Visits</a>
+        <a href="services.html">Pet Sitting</a>
+        <a href="services.html">Vet Consultations</a>
+        <a href="services.html">Monthly Box</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Contact Us</a>
+        <a href="#">FAQ</a>
+        <a href="#">Shipping Policy</a>
+        <a href="#">Returns</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Meow Morsel. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" title="Instagram">📸</a>
+        <a href="#" title="Twitter">🐦</a>
+        <a href="#" title="Facebook">👤</a>
+        <a href="#" title="YouTube">▶️</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
