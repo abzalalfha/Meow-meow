@@ -484,7 +484,7 @@ footer.style.display='block';let total=0;el.innerHTML=c.map((item,i)=>{const sub
 function changeQty(i,d){const c=getCart();c[i].qty+=d;if(c[i].qty<=0)c.splice(i,1);saveCart(c);renderCart();updateCartCount();}
 function addToCart(name,price,emoji){const c=getCart();const ex=c.find(i=>i.name===name);if(ex)ex.qty++;else c.push({name,price,emoji,qty:1});saveCart(c);updateCartCount();showToast('Added to cart! 🛒');}
 function showToast(msg){const t=document.createElement('div');t.textContent=msg;t.style.cssText='position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;padding:12px 28px;border-radius:50px;font-weight:700;font-size:14px;z-index:99999;animation:fadeUp .3s ease;box-shadow:0 8px 30px rgba(244,106,26,.4);';document.body.appendChild(t);setTimeout(()=>t.remove(),2500);}
-function orderOnWhatsApp(){const c=getCart();if(!c.length){alert('Your cart is empty!');return;}let msg='🐱 *New Order from Meow Meow*\n\n';c.forEach(i=>{msg+=`• ${i.emoji||'🐾'} ${i.name} × ${i.qty} = ₹${i.price*i.qty}\n`;});const total=c.reduce((s,i)=>s+i.price*i.qty,0);msg+=`\n💰 *Grand Total: ₹${total}*\n\nPlease confirm my order! 😺`;window.open(`https://wa.me/918779841469?text=${encodeURIComponent(msg)}`);}
+function orderOnWhatsApp(){const c=getCart();if(!c.length){alert('Your cart is empty!');return;}let msg='🐱 *New Order from Meow Meow*\n\n';c.forEach(i=>{msg+=`• ${i.emoji||'🐾'} ${i.name} × ${i.qty} = ₹${i.price*i.qty}\n`;});const total=c.reduce((s,i)=>s+i.price*i.qty,0);msg+=`\n💰 *Grand Total: ₹${total}*\n\nPlease confirm my order! 😺`;window.open(`https://wa.me/917559849139?text=${encodeURIComponent(msg)}`);}
 window.addToCart=addToCart;
 updateCartCount();
 </script>
