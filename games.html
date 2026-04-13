@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cat Games — Meow Morsel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#1A0A00;--bg:#FFF9F2;--cream:#FDF3E3;
+  --orange:#F46A1A;--gold:#F0B429;--rust:#C44B0A;
+  --muted:#6B5A4A;--card:#FFFBF5;--border:rgba(244,106,26,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Satoshi',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;height:72px;background:rgba(255,249,242,.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);z-index:1000;display:flex;align-items:center;padding:0 60px}
+.nlogo{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:900;display:flex;align-items:center;gap:10px}
+.nlogo .icon{width:36px;height:36px;background:var(--orange);color:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.game-hero{padding:140px 60px 100px;background:linear-gradient(165deg,#1A0A00,#2E1200);color:#fff;text-align:center}
+.game-hero h1{font-family:'Fraunces',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:900;margin-bottom:16px}
+.game-hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:620px;margin:0 auto 40px}
+.games-container{padding:80px 60px;max-width:1240px;margin:0 auto}
+.game-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:32px}
+.game-card{background:var(--card);border:1px solid var(--border);border-radius:28px;overflow:hidden;transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.game-card:hover{transform:translateY(-15px);box-shadow:0 30px 70px rgba(244,106,26,.2)}
+.game-screen{height:280px;background:#0f2a1f;position:relative;overflow:hidden}
+canvas{display:block;width:100%;height:100%}
+.game-info{padding:32px}
+.game-info h3{font-family:'Fraunces',serif;font-size:1.55rem;margin-bottom:10px}
+.game-info p{color:var(--muted);line-height:1.65;margin-bottom:24px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;font-weight:700;padding:14px 34px;border-radius:999px;text-decoration:none;transition:all .3s}
+.btn:hover{background:var(--rust);transform:translateY(-3px)}
+.score{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:0.95rem}
+.score span{font-weight:600;color:var(--orange)}
+@media(max-width:900px){
+  nav{padding:0 30px}
+  .games-container{padding:60px 30px}
+  .game-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nlogo"><div class="icon">🐾</div>Meow Morsel</a>
+</nav>
+
+<div class="game-hero">
+  <h1>Playtime Zone 🐱🎮</h1>
+  <p>Fun browser games for cat parents. Challenge yourself and see how high you can score!</p>
+</div>
+
+<div class="games-container">
+  <div class="game-grid">
+    <!-- Fish Catcher -->
+    <div class="game-card">
+      <div class="game-screen"><canvas id="fishCanvas" width="400" height="280"></canvas></div>
+      <div class="game-info">
+        <h3>🐟 Fish Catcher</h3>
+        <p>Move the basket and catch as many falling fish as possible.</p>
+        <div class="score">
+          <span>Score: <span id="fishScore">0</span></span>
+          <button class="btn" onclick="startFishGame()">Start Game</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Memory Match -->
+    <div class="game-card">
+      <div class="game-screen"><canvas id="memoryCanvas" width="400" height="280"></canvas></div>
+      <div class="game-info">
+        <h3>🃏 Paw Memory</h3>
+        <p>Flip cards and match the cat emojis. How fast can you finish?</p>
+        <div class="score">
+          <span>Moves: <span id="memoryMoves">0</span></span>
+          <button class="btn" onclick="alert('Memory game coming in next update. Try Fish Catcher or Whack-a-Mouse for now!')">Play (Demo)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Whack-a-Mouse -->
+    <div class="game-card">
+      <div class="game-screen"><canvas id="whackCanvas" width="400" height="280"></canvas></div>
+      <div class="game-info">
+        <h3>🐭 Whack-a-Mouse</h3>
+        <p>Click the popping mice as fast as you can before they hide!</p>
+        <div class="score">
+          <span>Score: <span id="whackScore">0</span></span>
+          <button class="btn" onclick="startWhackGame()">Start Game</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Fish Catcher
+function startFishGame() {
+  const canvas = document.getElementById('fishCanvas');
+  const ctx = canvas.getContext('2d');
+  let basketX = 165, score = 0;
+  let fishes = [];
+  document.getElementById('fishScore').textContent = 0;
+
+  function spawn() { fishes.push({x: Math.random()*340, y: -40, speed: 2.5 + Math.random()*3}); }
+  setInterval(spawn, 550);
+
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    basketX = e.clientX - rect.left - 40;
+    if(basketX < 0) basketX = 0;
+    if(basketX > 320) basketX = 320;
+  });
+
+  function loop() {
+    ctx.fillStyle = '#0a3d62';
+    ctx.fillRect(0,0,400,280);
+    ctx.fillStyle = '#f46a1a';
+    ctx.fillRect(basketX, 210, 80, 45);
+
+    for(let i = fishes.length-1; i >= 0; i--){
+      let f = fishes[i];
+      ctx.font = '38px Arial';
+      ctx.fillText('🐟', f.x, f.y);
+      f.y += f.speed;
+
+      if(f.y > 205 && f.x > basketX && f.x < basketX+80){
+        score++;
+        document.getElementById('fishScore').textContent = score;
+        fishes.splice(i,1);
+      } else if(f.y > 300){
+        fishes.splice(i,1);
+      }
+    }
+    requestAnimationFrame(loop);
+  }
+  loop();
+}
+
+// Whack-a-Mouse
+function startWhackGame() {
+  const canvas = document.getElementById('whackCanvas');
+  const ctx = canvas.getContext('2d');
+  let score = 0;
+  let mice = [];
+  document.getElementById('whackScore').textContent = 0;
+
+  function spawnMouse() {
+    if(mice.length < 6){
+      mice.push({x: 50 + Math.random()*300, y: 60 + Math.random()*160, life: 38});
+    }
+  }
+  setInterval(spawnMouse, 650);
+
+  canvas.addEventListener('click', e => {
+    const rect = canvas.getBoundingClientRect();
+    const cx = e.clientX - rect.left;
+    const cy = e.clientY - rect.top;
+    for(let i = mice.length-1; i >= 0; i--){
+      let m = mice[i];
+      if(Math.hypot(cx - m.x, cy - m.y) < 35){
+        score += 20;
+        document.getElementById('whackScore').textContent = score;
+        mice.splice(i,1);
+        return;
+      }
+    }
+  });
+
+  function loop() {
+    ctx.fillStyle = '#1a0a00';
+    ctx.fillRect(0,0,400,280);
+    for(let i = mice.length-1; i >= 0; i--){
+      let m = mice[i];
+      ctx.font = '42px Arial';
+      ctx.fillText('🐭', m.x-22, m.y+12);
+      m.life--;
+      if(m.life <= 0) mice.splice(i,1);
+    }
+    requestAnimationFrame(loop);
+  }
+  loop();
+}
+</script>
+</body>
+</html>
