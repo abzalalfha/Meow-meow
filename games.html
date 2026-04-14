@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -8,125 +7,142 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet"/>
 <style>
-:root{--orange:#F46A1A;--cream:#FFF9F2;--brown:#1A0A00;--gold:#F0B429;--light-orange:#FDE8D5;--dark-orange:#C94E08;}
+:root{
+  --orange:#F46A1A;
+  --cream:#FFF9F2;
+  --brown:#1A0A00;
+  --gold:#F0B429;
+  --light-orange:#FDE8D5;
+  --dark-orange:#C94E08;
+}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Satoshi',sans-serif;background:var(--cream);color:var(--brown);cursor:none;overflow-x:hidden;}
-#cursor{position:fixed;width:12px;height:12px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);}
-#cursor-ring{position:fixed;width:36px;height:36px;border:2px solid var(--orange);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .18s ease;opacity:.6;}
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,249,242,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(244,106,26,.12);}
-nav.scrolled{box-shadow:0 4px 30px rgba(244,106,26,.1);}
-.nav-logo{font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--orange);text-decoration:none;display:flex;align-items:center;gap:8px;}
-.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
-.nav-links a{font-size:15px;font-weight:500;color:var(--brown);text-decoration:none;position:relative;transition:color .2s;}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--orange);transition:width .3s;}
-.nav-links a:hover{color:var(--orange);}
+
+/* CURSOR - Premium */
+#cursor{position:fixed;width:14px;height:14px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);box-shadow:0 0 20px 6px rgba(244,106,26,.4);}
+#cursor-ring{position:fixed;width:42px;height:42px;border:3px solid var(--orange);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .22s cubic-bezier(0.4,0,0.2,1);opacity:.65;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,249,242,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(244,106,26,.15);transition:all .4s;}
+nav.scrolled{padding:12px 40px;box-shadow:0 8px 40px rgba(244,106,26,.18);}
+.nav-logo{font-family:'Fraunces',serif;font-size:30px;font-weight:700;color:var(--orange);text-decoration:none;display:flex;align-items:center;gap:8px;letter-spacing:-0.5px;}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-links a{font-size:15.5px;font-weight:600;color:var(--brown);text-decoration:none;position:relative;transition:color .3s;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2.5px;background:var(--orange);transition:width .4s cubic-bezier(0.4,0,0.2,1);}
+.nav-links a:hover,.nav-links a.active{color:var(--orange);}
 .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
-.nav-links a.active{color:var(--orange);}
 .nav-right{display:flex;align-items:center;gap:20px;}
-.cart-btn{position:relative;background:var(--orange);color:#fff;border:none;width:44px;height:44px;border-radius:50%;font-size:18px;cursor:none;transition:transform .2s,background .2s;display:flex;align-items:center;justify-content:center;}
-.cart-btn:hover{background:var(--dark-orange);transform:scale(1.1);}
-.cart-count{position:absolute;top:-4px;right:-4px;background:var(--gold);color:var(--brown);font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.cart-btn{position:relative;background:var(--orange);color:#fff;border:none;width:46px;height:46px;border-radius:50%;font-size:19px;cursor:none;transition:all .3s cubic-bezier(0.4,0,0.2,1);box-shadow:0 8px 25px rgba(244,106,26,.35);}
+.cart-btn:hover{background:var(--dark-orange);transform:scale(1.12);box-shadow:0 12px 35px rgba(201,78,8,.4);}
+.cart-count{position:absolute;top:-5px;right:-5px;background:var(--gold);color:var(--brown);font-size:10px;font-weight:700;width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:none;background:none;border:none;padding:4px;}
-.hamburger span{width:26px;height:2px;background:var(--brown);display:block;}
-.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:var(--cream);border-bottom:2px solid var(--light-orange);padding:24px 40px;z-index:999;}
+.hamburger span{width:26px;height:2px;background:var(--brown);display:block;transition:all .3s;}
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:var(--cream);border-bottom:2px solid var(--light-orange);padding:24px 40px;z-index:999;box-shadow:0 10px 30px rgba(26,10,0,.1);}
 .mobile-menu.open{display:block;}
-.mobile-menu a{display:block;font-size:18px;font-weight:500;color:var(--brown);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--light-orange);}
+.mobile-menu a{display:block;font-size:18px;font-weight:600;color:var(--brown);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--light-orange);transition:color .3s;}
+.mobile-menu a:hover{color:var(--orange);}
 
 /* HERO */
-.games-hero{background:linear-gradient(135deg,var(–brown) 0%,#3D1500 100%);padding:140px 40px 80px;text-align:center;position:relative;overflow:hidden;}
-.floating-emojis span{position:absolute;font-size:40px;animation:floatRandom linear infinite;opacity:.2;}
-.games-hero .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(244,106,26,.25);color:var(–orange);border-radius:50px;padding:8px 20px;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:28px;border:1px solid rgba(244,106,26,.3);}
-.games-hero h1{font-family:‘Fraunces’,serif;font-size:clamp(40px,6vw,80px);font-weight:900;color:#fff;line-height:1.05;margin-bottom:16px;}
-.games-hero h1 em{font-style:italic;color:var(–orange);}
-.games-hero p{color:#C49A6C;font-size:18px;max-width:520px;margin:0 auto;}
+.games-hero{background:linear-gradient(135deg,var(--brown) 0%,#3D1500 100%);padding:160px 40px 100px;text-align:center;position:relative;overflow:hidden;min-height:85vh;display:flex;align-items:center;justify-content:center;}
+.floating-emojis span{position:absolute;font-size:48px;animation:floatRandom linear infinite;opacity:.25;pointer-events:none;}
+.games-hero .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(244,106,26,.25);color:var(--orange);border-radius:50px;padding:9px 24px;font-size:13.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:28px;border:1px solid rgba(244,106,26,.3);}
+.games-hero h1{font-family:'Fraunces',serif;font-size:clamp(46px,5.5vw,82px);font-weight:900;color:#fff;line-height:1.05;margin-bottom:20px;letter-spacing:-1px;}
+.games-hero h1 em{font-style:italic;color:var(--orange);}
+.games-hero p{color:#C49A6C;font-size:19px;max-width:560px;margin:0 auto;line-height:1.65;}
 
-/* GAME GRID */
-.games-section{padding:80px 40px;max-width:1300px;margin:0 auto;}
-.games-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
-.game-card{background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 6px 30px rgba(26,10,0,.08);transition:transform .3s,box-shadow .3s;}
-.game-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(244,106,26,.18);}
-.game-card-header{background:var(–brown);padding:28px;text-align:center;position:relative;}
-.game-emoji{font-size:52px;margin-bottom:8px;}
-.game-card-title{font-family:‘Fraunces’,serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:6px;}
-.game-card-sub{color:#C49A6C;font-size:13px;}
-.game-card-body{padding:24px;}
-.score-display{display:flex;justify-content:space-between;align-items:center;background:var(–light-orange);border-radius:12px;padding:12px 18px;margin-bottom:18px;}
-.score-label{font-size:12px;font-weight:700;color:var(–brown);text-transform:uppercase;letter-spacing:.05em;}
-.score-val{font-family:‘Fraunces’,serif;font-size:24px;font-weight:700;color:var(–orange);}
-.game-canvas-wrap{background:var(–cream);border-radius:16px;overflow:hidden;margin-bottom:18px;position:relative;}
-canvas{display:block;width:100%;image-rendering:crisp-edges;}
-.game-controls{display:flex;gap:10px;}
-.btn-game{flex:1;padding:12px;border-radius:50px;font-size:14px;font-weight:700;cursor:none;border:none;transition:all .2s;}
-.btn-start{background:var(–orange);color:#fff;}
-.btn-start:hover{background:var(–dark-orange);transform:scale(1.03);}
-.btn-stop{background:var(–light-orange);color:var(–brown);}
-.btn-stop:hover{background:#f5c8a8;}
-.game-over-overlay{position:absolute;inset:0;background:rgba(26,10,0,.82);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:16px;opacity:0;pointer-events:none;transition:opacity .3s;}
-.game-over-overlay.show{opacity:1;pointer-events:all;}
-.game-over-title{font-family:‘Fraunces’,serif;font-size:28px;color:#fff;margin-bottom:8px;}
-.game-over-score{font-size:48px;font-weight:700;color:var(–orange);margin-bottom:20px;}
-.btn-restart{background:var(–orange);color:#fff;padding:12px 32px;border-radius:50px;font-size:14px;font-weight:700;border:none;cursor:none;}
+/* GAMES SECTION */
+.games-section{padding:100px 40px;max-width:1340px;margin:0 auto;}
+.games-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:32px;}
+.game-card{background:#fff;border-radius:32px;overflow:hidden;box-shadow:0 12px 40px rgba(26,10,0,.09);transition:transform .4s cubic-bezier(0.4,0,0.2,1),box-shadow .4s;}
+.game-card:hover{transform:translateY(-12px);box-shadow:0 30px 70px rgba(244,106,26,.25);}
+.game-card-header{background:var(--brown);padding:36px 28px;text-align:center;position:relative;}
+.game-emoji{font-size:58px;margin-bottom:12px;}
+.game-card-title{font-family:'Fraunces',serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:6px;}
+.game-card-sub{color:#C49A6C;font-size:14px;}
+.game-card-body{padding:32px;}
+.score-display{display:flex;justify-content:space-between;align-items:center;background:var(--light-orange);border-radius:16px;padding:14px 20px;margin-bottom:22px;}
+.score-label{font-size:12.5px;font-weight:700;color:var(--brown);text-transform:uppercase;letter-spacing:.6px;}
+.score-val{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--orange);}
+.game-canvas-wrap{background:var(--cream);border-radius:20px;overflow:hidden;margin-bottom:22px;position:relative;height:220px;}
+canvas{display:block;width:100%;height:100%;image-rendering:crisp-edges;}
+.game-controls{display:flex;gap:12px;}
+.btn-game{flex:1;padding:14px;border-radius:50px;font-size:15.5px;font-weight:700;cursor:none;border:none;transition:all .3s;}
+.btn-start{background:var(--orange);color:#fff;}
+.btn-start:hover{background:var(--dark-orange);transform:scale(1.04);}
+.btn-stop{background:var(--light-orange);color:var(--brown);}
+.btn-stop:hover{background:#f5c8a8;transform:scale(1.02);}
+.game-over-overlay{position:absolute;inset:0;background:rgba(26,10,0,.85);display:none;flex-direction:column;align-items:center;justify-content:center;border-radius:20px;}
+.game-over-overlay.show{display:flex;}
+.game-over-title{font-family:'Fraunces',serif;font-size:28px;color:#fff;margin-bottom:8px;}
+.game-over-score{font-size:52px;font-weight:700;color:var(--orange);margin-bottom:24px;}
+.btn-restart{background:var(--orange);color:#fff;padding:14px 36px;border-radius:50px;font-size:15px;font-weight:700;border:none;cursor:none;transition:all .3s;}
+.btn-restart:hover{transform:scale(1.05);}
 
 /* MEMORY GRID */
-.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px;background:var(–cream);border-radius:16px;margin-bottom:18px;}
-.mem-card{aspect-ratio:1;border-radius:12px;background:var(–brown);display:flex;align-items:center;justify-content:center;font-size:26px;cursor:none;transition:all .3s;border:2px solid transparent;}
-.mem-card.flipped,.mem-card.matched{background:var(–light-orange);border-color:var(–orange);}
-.mem-card.matched{background:#d4f5d4;border-color:#00C896;cursor:default;}
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:12px;background:var(--cream);border-radius:20px;margin-bottom:22px;}
+.mem-card{aspect-ratio:1;border-radius:14px;background:var(--brown);display:flex;align-items:center;justify-content:center;font-size:32px;cursor:none;transition:all .4s;border:3px solid transparent;}
+.mem-card.flipped,.mem-card.matched{background:var(--light-orange);border-color:var(--orange);}
+.mem-card.matched{background:#d4f5d4;border-color:#00C896;}
 .mem-card.face-down{font-size:0;}
-.mem-card.face-down::after{content:‘🐾’;font-size:22px;}
+.mem-card.face-down::after{content:'🐾';font-size:26px;opacity:0.6;}
 
 /* WHACK A MOUSE */
-.whack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px;background:var(–cream);border-radius:16px;margin-bottom:18px;}
-.hole{aspect-ratio:1;border-radius:16px;background:var(–brown);display:flex;align-items:center;justify-content:center;font-size:36px;cursor:none;position:relative;overflow:hidden;transition:background .2s;}
-.hole.active{background:#3D1500;cursor:none;}
-.hole .mole{position:absolute;bottom:-100%;transition:bottom .15s ease;font-size:36px;}
-.hole.active .mole{bottom:5%;}
+.whack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:12px;background:var(--cream);border-radius:20px;margin-bottom:22px;}
+.hole{aspect-ratio:1;border-radius:20px;background:var(--brown);display:flex;align-items:center;justify-content:center;font-size:42px;cursor:none;position:relative;overflow:hidden;transition:all .2s;}
+.hole.active{background:#3D1500;}
+.hole .mole{position:absolute;bottom:-110%;transition:bottom .18s ease;font-size:42px;}
+.hole.active .mole{bottom:8%;}
 .hole.hit{background:#4A0000;}
 
 /* CART */
-.cart-overlay{position:fixed;inset:0;background:rgba(26,10,0,.5);z-index:9000;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px);}
+.cart-overlay{position:fixed;inset:0;background:rgba(26,10,0,.6);z-index:9000;opacity:0;pointer-events:none;transition:opacity .4s;backdrop-filter:blur(8px);}
 .cart-overlay.open{opacity:1;pointer-events:all;}
-.cart-modal{position:fixed;right:-480px;top:0;bottom:0;width:460px;background:#fff;z-index:9001;padding:32px;display:flex;flex-direction:column;transition:right .4s cubic-bezier(.25,.46,.45,.94);}
+.cart-modal{position:fixed;right:-500px;top:0;bottom:0;width:480px;background:#fff;z-index:9001;padding:36px;display:flex;flex-direction:column;transition:right .5s cubic-bezier(0.32,0.72,0,1);box-shadow:-25px 0 70px rgba(26,10,0,.2);border-top-left-radius:28px;border-bottom-left-radius:28px;}
 .cart-modal.open{right:0;}
-.cart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
-.cart-title{font-family:‘Fraunces’,serif;font-size:26px;font-weight:700;}
-.cart-close{background:var(–light-orange);border:none;width:40px;height:40px;border-radius:50%;font-size:18px;cursor:none;display:flex;align-items:center;justify-content:center;}
-.cart-close:hover{background:var(–orange);color:#fff;}
-.cart-items{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:16px;}
-.cart-item{display:flex;align-items:center;gap:14px;background:var(–cream);border-radius:16px;padding:14px;}
-.cart-item-emoji{font-size:28px;width:50px;height:50px;background:var(–light-orange);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;}
+.cart-title{font-family:'Fraunces',serif;font-size:28px;font-weight:700;}
+.cart-close{background:var(--light-orange);border:none;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .3s;}
+.cart-close:hover{background:var(--orange);color:#fff;transform:rotate(90deg);}
+.cart-items{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:18px;}
+.cart-item{display:flex;align-items:center;gap:16px;background:var(--cream);border-radius:20px;padding:16px;}
+.cart-item-emoji{font-size:30px;width:54px;height:54px;background:var(--light-orange);border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .cart-item-info{flex:1;}
-.cart-item-name{font-weight:700;font-size:14px;margin-bottom:4px;}
-.cart-item-price{font-size:13px;color:var(–orange);font-weight:700;}
-.cart-item-qty{display:flex;align-items:center;gap:8px;}
-.qty-btn{width:28px;height:28px;border-radius:50%;border:2px solid var(–orange);background:transparent;color:var(–orange);font-size:16px;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-.qty-btn:hover{background:var(–orange);color:#fff;}
-.qty-num{font-weight:700;font-size:15px;min-width:20px;text-align:center;}
-.cart-footer-modal{border-top:2px solid var(–light-orange);padding-top:20px;margin-top:20px;}
-.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
-.cart-total-label{font-size:16px;font-weight:700;}
-.cart-total-price{font-family:‘Fraunces’,serif;font-size:28px;font-weight:700;color:var(–orange);}
-.cart-empty{text-align:center;padding:60px 20px;color:#8B6040;}
-.cart-empty-icon{font-size:60px;margin-bottom:16px;}
-.whatsapp-btn{background:#25D366;color:#fff;border:none;width:100%;padding:16px;border-radius:16px;font-size:16px;font-weight:700;cursor:none;display:flex;align-items:center;justify-content:center;gap:10px;}
-.whatsapp-btn:hover{background:#128C7E;}
-footer{background:var(–brown);color:#C49A6C;padding:40px;text-align:center;}
-.footer-logo{font-family:‘Fraunces’,serif;font-size:24px;font-weight:700;color:var(–orange);margin-bottom:12px;}
-footer p{font-size:14px;}
-footer a{color:var(–orange);text-decoration:none;}
-@keyframes floatRandom{0%{transform:translateY(100vh) rotate(0deg);}100%{transform:translateY(-100px) rotate(360deg);}}
+.cart-item-name{font-weight:700;font-size:14.5px;margin-bottom:5px;}
+.cart-item-price{font-size:13.5px;color:var(--orange);font-weight:700;}
+.cart-item-qty{display:flex;align-items:center;gap:10px;}
+.qty-btn{width:30px;height:30px;border-radius:50%;border:2px solid var(--orange);background:transparent;color:var(--orange);font-size:17px;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .3s;}
+.qty-btn:hover{background:var(--orange);color:#fff;}
+.qty-num{font-weight:700;font-size:16px;min-width:22px;text-align:center;}
+.cart-footer{border-top:2px solid var(--light-orange);padding-top:24px;margin-top:24px;}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}
+.cart-total-label{font-size:16.5px;font-weight:700;}
+.cart-total-price{font-family:'Fraunces',serif;font-size:30px;font-weight:700;color:var(--orange);}
+.cart-empty{text-align:center;padding:80px 20px;color:#8B6040;}
+.cart-empty-icon{font-size:68px;margin-bottom:20px;}
+.whatsapp-btn{background:#25D366;color:#fff;border:none;width:100%;padding:18px;border-radius:20px;font-size:17px;font-weight:700;cursor:none;display:flex;align-items:center;justify-content:center;gap:12px;transition:all .4s;}
+.whatsapp-btn:hover{background:#128C7E;transform:translateY(-3px);}
+
+/* ANIMATIONS */
+@keyframes floatRandom{
+  0%{transform:translateY(120vh) rotate(0deg);opacity:0.25;}
+  100%{transform:translateY(-120px) rotate(360deg);opacity:0;}
+}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(0.4,0,0.2,1),transform .8s cubic-bezier(0.4,0,0.2,1);}
+.reveal.visible{opacity:1;transform:none;}
+
 @media(max-width:900px){
-nav{padding:14px 20px;}
-.nav-links{display:none;}
-.hamburger{display:flex;}
-.games-grid{grid-template-columns:1fr;}
-.cart-modal{width:100%;right:-100%;}
+  nav{padding:16px 24px;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .games-hero{padding:120px 24px 80px;}
+  .games-grid{grid-template-columns:1fr;}
+  .cart-modal{width:100%;right:-100%;border-radius:0;}
 }
 </style>
-
 </head>
 <body>
+
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 
@@ -144,208 +160,473 @@ nav{padding:14px 20px;}
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="index.html">Home</a><a href="products.html">Products</a><a href="services.html">Services</a><a href="games.html">Games</a>
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="services.html">Services</a>
+  <a href="games.html">Games</a>
 </div>
 
 <!-- HERO -->
-
 <div class="games-hero">
   <div class="floating-emojis">
-    <span style="left:5%;animation-duration:12s;animation-delay:0s;">🐟</span>
-    <span style="left:20%;animation-duration:15s;animation-delay:2s;">🐾</span>
-    <span style="left:40%;animation-duration:10s;animation-delay:4s;">🐭</span>
-    <span style="left:60%;animation-duration:14s;animation-delay:1s;">🎯</span>
-    <span style="left:75%;animation-duration:11s;animation-delay:3s;">🐱</span>
-    <span style="left:90%;animation-duration:13s;animation-delay:5s;">✨</span>
+    <span style="left:8%;animation-duration:14s;animation-delay:0s;">🐟</span>
+    <span style="left:22%;animation-duration:18s;animation-delay:1.5s;">🐾</span>
+    <span style="left:38%;animation-duration:12s;animation-delay:3s;">🐭</span>
+    <span style="left:55%;animation-duration:16s;animation-delay:0.8s;">🎯</span>
+    <span style="left:72%;animation-duration:13s;animation-delay:4s;">😺</span>
+    <span style="left:85%;animation-duration:15s;animation-delay:2.2s;">✨</span>
   </div>
-  <div style="position:relative;z-index:2;">
-    <div class="hero-badge">🎮 Meow Meow Fun Zone</div>
+  <div style="position:relative;z-index:2;max-width:780px;">
+    <div class="hero-badge">🎮 Fun Zone</div>
     <h1>Play Like a <em>Cat,</em><br>Score Like a Champion</h1>
-    <p>Three free browser games to keep you (and your curious cat) entertained. No downloads. No logins. Just fun!</p>
+    <p>Three completely free browser games made for cat lovers. No downloads. No sign-ups. Just pure fun while your cat judges you.</p>
   </div>
 </div>
 
 <!-- GAMES -->
-
 <div class="games-section">
   <div class="games-grid">
 
-```
-<!-- GAME 1: FISH CATCHER -->
-<div class="game-card">
-  <div class="game-card-header">
-    <div class="game-emoji">🐟</div>
-    <div class="game-card-title">Fish Catcher</div>
-    <div class="game-card-sub">Catch fish, dodge the bombs!</div>
-  </div>
-  <div class="game-card-body">
-    <div class="score-display">
-      <div><div class="score-label">Score</div><div class="score-val" id="fc-score">0</div></div>
-      <div><div class="score-label">Best</div><div class="score-val" id="fc-best">0</div></div>
-      <div><div class="score-label">Lives</div><div class="score-val" id="fc-lives">3</div></div>
-    </div>
-    <div class="game-canvas-wrap" style="position:relative;">
-      <canvas id="fishCanvas" width="320" height="240" style="height:200px;width:100%;"></canvas>
-      <div class="game-over-overlay" id="fc-over">
-        <div class="game-over-title">Game Over! 🐟</div>
-        <div class="game-over-score" id="fc-final-score">0</div>
-        <button class="btn-restart" onclick="startFishGame()">Play Again</button>
+    <!-- FISH CATCHER -->
+    <div class="game-card">
+      <div class="game-card-header">
+        <div class="game-emoji">🐟</div>
+        <div class="game-card-title">Fish Catcher</div>
+        <div class="game-card-sub">Catch falling fish • Dodge bombs</div>
+      </div>
+      <div class="game-card-body">
+        <div class="score-display">
+          <div><div class="score-label">Score</div><div class="score-val" id="fc-score">0</div></div>
+          <div><div class="score-label">Best</div><div class="score-val" id="fc-best">0</div></div>
+          <div><div class="score-label">Lives</div><div class="score-val" id="fc-lives">3</div></div>
+        </div>
+        <div class="game-canvas-wrap">
+          <canvas id="fishCanvas" width="320" height="240"></canvas>
+          <div class="game-over-overlay" id="fc-over">
+            <div class="game-over-title">Game Over! 🐟</div>
+            <div class="game-over-score" id="fc-final-score">0</div>
+            <button class="btn-restart" onclick="startFishGame()">Play Again</button>
+          </div>
+        </div>
+        <div class="game-controls">
+          <button class="btn-game btn-start" id="fc-startBtn" onclick="startFishGame()">▶ Start Game</button>
+          <button class="btn-game btn-stop" onclick="stopFishGame()">⏹ Stop</button>
+        </div>
       </div>
     </div>
-    <div class="game-controls">
-      <button class="btn-game btn-start" id="fc-startBtn" onclick="startFishGame()">▶ Start</button>
-      <button class="btn-game btn-stop" onclick="stopFishGame()">⏹ Stop</button>
-    </div>
-  </div>
-</div>
 
-<!-- GAME 2: PAW MEMORY -->
-<div class="game-card">
-  <div class="game-card-header">
-    <div class="game-emoji">🐾</div>
-    <div class="game-card-title">Paw Memory</div>
-    <div class="game-card-sub">Match all pairs to win!</div>
-  </div>
-  <div class="game-card-body">
-    <div class="score-display">
-      <div><div class="score-label">Pairs</div><div class="score-val" id="mem-pairs">0/8</div></div>
-      <div><div class="score-label">Moves</div><div class="score-val" id="mem-moves">0</div></div>
-      <div><div class="score-label">Best</div><div class="score-val" id="mem-best">-</div></div>
+    <!-- PAW MEMORY -->
+    <div class="game-card">
+      <div class="game-card-header">
+        <div class="game-emoji">🐾</div>
+        <div class="game-card-title">Paw Memory</div>
+        <div class="game-card-sub">Match the pairs before time runs out</div>
+      </div>
+      <div class="game-card-body">
+        <div class="score-display">
+          <div><div class="score-label">Pairs</div><div class="score-val" id="mem-pairs">0/8</div></div>
+          <div><div class="score-label">Moves</div><div class="score-val" id="mem-moves">0</div></div>
+          <div><div class="score-label">Best</div><div class="score-val" id="mem-best">-</div></div>
+        </div>
+        <div class="memory-grid" id="memoryGrid"></div>
+        <div class="game-controls">
+          <button class="btn-game btn-start" onclick="initMemory()">🔀 New Game</button>
+        </div>
+      </div>
     </div>
-    <div class="memory-grid" id="memoryGrid"></div>
-    <div class="game-controls">
-      <button class="btn-game btn-start" onclick="initMemory()">🔀 New Game</button>
-    </div>
-  </div>
-</div>
 
-<!-- GAME 3: WHACK-A-MOUSE -->
-<div class="game-card">
-  <div class="game-card-header">
-    <div class="game-emoji">🐭</div>
-    <div class="game-card-title">Whack-a-Mouse</div>
-    <div class="game-card-sub">Tap fast, score big!</div>
-  </div>
-  <div class="game-card-body">
-    <div class="score-display">
-      <div><div class="score-label">Score</div><div class="score-val" id="wam-score">0</div></div>
-      <div><div class="score-label">Best</div><div class="score-val" id="wam-best">0</div></div>
-      <div><div class="score-label">Time</div><div class="score-val" id="wam-time">30</div></div>
+    <!-- WHACK-A-MOUSE -->
+    <div class="game-card">
+      <div class="game-card-header">
+        <div class="game-emoji">🐭</div>
+        <div class="game-card-title">Whack-a-Mouse</div>
+        <div class="game-card-sub">Tap the mice as fast as you can!</div>
+      </div>
+      <div class="game-card-body">
+        <div class="score-display">
+          <div><div class="score-label">Score</div><div class="score-val" id="wam-score">0</div></div>
+          <div><div class="score-label">Best</div><div class="score-val" id="wam-best">0</div></div>
+          <div><div class="score-label">Time</div><div class="score-val" id="wam-time">30</div></div>
+        </div>
+        <div class="whack-grid" id="whackGrid">
+          <div class="hole" id="h0" onclick="whack(0)"><div class="mole">🐭</div></div>
+          <div class="hole" id="h1" onclick="whack(1)"><div class="mole">🐭</div></div>
+          <div class="hole" id="h2" onclick="whack(2)"><div class="mole">🐭</div></div>
+          <div class="hole" id="h3" onclick="whack(3)"><div class="mole">🐭</div></div>
+          <div class="hole" id="h4" onclick="whack(4)"><div class="mole">🐭</div></div>
+          <div class="hole" id="h5" onclick="whack(5)"><div class="mole">🐭</div></div>
+          <div class="hole" id="h6" onclick="whack(6)"><div class="mole">🐭</div></div>
+          <div class="hole" id="h7" onclick="whack(7)"><div class="mole">🐭</div></div>
+          <div class="hole" id="h8" onclick="whack(8)"><div class="mole">🐭</div></div>
+        </div>
+        <div class="game-controls">
+          <button class="btn-game btn-start" id="wam-startBtn" onclick="startWhack()">▶ Start Game</button>
+          <button class="btn-game btn-stop" onclick="stopWhack()">⏹ Stop</button>
+        </div>
+      </div>
     </div>
-    <div class="whack-grid" id="whackGrid">
-      <div class="hole" id="h0" onclick="whack(0)"><div class="mole">🐭</div></div>
-      <div class="hole" id="h1" onclick="whack(1)"><div class="mole">🐭</div></div>
-      <div class="hole" id="h2" onclick="whack(2)"><div class="mole">🐭</div></div>
-      <div class="hole" id="h3" onclick="whack(3)"><div class="mole">🐭</div></div>
-      <div class="hole" id="h4" onclick="whack(4)"><div class="mole">🐭</div></div>
-      <div class="hole" id="h5" onclick="whack(5)"><div class="mole">🐭</div></div>
-      <div class="hole" id="h6" onclick="whack(6)"><div class="mole">🐭</div></div>
-      <div class="hole" id="h7" onclick="whack(7)"><div class="mole">🐭</div></div>
-      <div class="hole" id="h8" onclick="whack(8)"><div class="mole">🐭</div></div>
-    </div>
-    <div class="game-controls">
-      <button class="btn-game btn-start" id="wam-startBtn" onclick="startWhack()">▶ Start</button>
-      <button class="btn-game btn-stop" onclick="stopWhack()">⏹ Stop</button>
-    </div>
-  </div>
-</div>
-```
 
   </div>
 </div>
 
 <footer>
   <div class="footer-logo">🐱 Meow Meow</div>
-  <p style="margin-bottom:8px;">Premium cat food & pet care, delivered across India.</p>
-  <p>© 2025 Meow Meow Pvt. Ltd. | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
+  <p style="margin-bottom:10px;">Premium cat food & pet care, delivered across India.</p>
+  <p>© 2026 Meow Meow Pvt. Ltd. | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
 </footer>
 
 <!-- CART -->
-
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-modal" id="cartModal">
-  <div class="cart-header"><div class="cart-title">🛒 Your Cart</div><button class="cart-close" onclick="closeCart()">✕</button></div>
+  <div class="cart-header">
+    <div class="cart-title">🛒 Your Cart</div>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
   <div class="cart-items" id="cartItems"></div>
-  <div class="cart-footer-modal" id="cartFooter" style="display:none;">
+  <div class="cart-footer" id="cartFooter" style="display:none;">
     <div class="cart-total"><span class="cart-total-label">Grand Total</span><span class="cart-total-price" id="cartTotalPrice">₹0</span></div>
-    <button class="whatsapp-btn" onclick="orderOnWhatsApp()"><span style="font-size:22px;">📱</span> Order on WhatsApp</button>
+    <button class="whatsapp-btn" onclick="orderOnWhatsApp()"><span style="font-size:24px;">📱</span> Order on WhatsApp</button>
   </div>
 </div>
 
 <script>
-// CURSOR
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
-function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+// Cursor
+const cursor = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); }
 animRing();
-window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);});
-document.getElementById('hamburger').addEventListener('click',function(){document.getElementById('mobileMenu').classList.toggle('open');});
+document.querySelectorAll('a,button,[onclick]').forEach(el => {
+  el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(2.2)'; ring.style.opacity = '.35'; });
+  el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '.65'; });
+});
+
+// Nav
+window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50));
+document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
 
 /* ==================== FISH CATCHER ==================== */
-const fishCanvas=document.getElementById('fishCanvas');
-const fctx=fishCanvas.getContext('2d');
-let fcRunning=false,fcScore=0,fcLives=3,fcBest=parseInt(localStorage.getItem('fc_best')||'0');
-let fcFish=[],fcBombs=[],fcCat={x:160,y:220,w:40,h:20,speed:0};
-let fcKeys={},fcRaf,fcSpawnTimer=0,fcLevel=1;
-document.getElementById('fc-best').textContent=fcBest;
-fishCanvas.width=320;fishCanvas.height=240;
-document.addEventListener('keydown',e=>{fcKeys[e.key]=true;});
-document.addEventListener('keyup',e=>{fcKeys[e.key]=false;});
-fishCanvas.addEventListener('touchstart',e=>{const t=e.touches[0];const r=fishCanvas.getBoundingClientRect();const tx=((t.clientX-r.left)/r.width)*320;fcCat.x=tx-20;});
-fishCanvas.addEventListener('touchmove',e=>{e.preventDefault();const t=e.touches[0];const r=fishCanvas.getBoundingClientRect();const tx=((t.clientX-r.left)/r.width)*320;fcCat.x=Math.max(0,Math.min(280,tx-20));},{passive:false});
-fishCanvas.addEventListener('mousemove',e=>{const r=fishCanvas.getBoundingClientRect();const tx=((e.clientX-r.left)/r.width)*320;fcCat.x=Math.max(0,Math.min(280,tx-20));});
-function spawnFish(){fcFish.push({x:Math.random()*290,y:-20,speed:1.5+Math.random()*2+fcLevel*.3,size:18+Math.random()*14});}
-function spawnBomb(){if(fcLevel>1)fcBombs.push({x:Math.random()*290,y:-20,speed:1.2+Math.random()*2+fcLevel*.2});}
-function drawFishFrame(){fctx.clearRect(0,0,320,240);
-fctx.fillStyle='#0A2040';fctx.fillRect(0,0,320,240);
-for(let i=0;i<20;i++){fctx.fillStyle='rgba(255,255,255,'+(0.1+Math.random()*.1)+')';fctx.fillRect(i*16+Math.sin(Date.now()/1000+i)*.5,240-(i%5)*8,1,1);}
-fcFish.forEach(f=>{fctx.font=f.size+'px serif';fctx.textAlign='center';fctx.fillText('🐟',f.x+f.size/2,f.y+f.size/2);});
-fcBombs.forEach(b=>{fctx.font='22px serif';fctx.textAlign='center';fctx.fillText('💣',b.x+11,b.y+11);});
-fctx.fillStyle=fcLives<=1?'#FF4444':'#F46A1A';
-fctx.fillRect(fcCat.x,fcCat.y,40,16);
-fctx.font='22px serif';fctx.textAlign='center';fctx.fillText('😺',fcCat.x+20,fcCat.y+14);}
-function fcLoop(){if(!fcRunning)return;fcSpawnTimer++;if(fcSpawnTimer%40===0)spawnFish();if(fcSpawnTimer%80===0)spawnBomb();if(fcSpawnTimer%600===0)fcLevel++;
-if(fcKeys['ArrowLeft']||fcKeys['a'])fcCat.x=Math.max(0,fcCat.x-5);
-if(fcKeys['ArrowRight']||fcKeys['d'])fcCat.x=Math.min(280,fcCat.x+5);
-fcFish.forEach(f=>f.y+=f.speed);fcBombs.forEach(b=>b.y+=b.speed);
-for(let i=fcFish.length-1;i>=0;i--){const f=fcFish[i];if(f.y>250){fcFish.splice(i,1);}else if(f.x<fcCat.x+38&&f.x+f.size>fcCat.x&&f.y+f.size>fcCat.y&&f.y<fcCat.y+20){fcFish.splice(i,1);fcScore++;document.getElementById('fc-score').textContent=fcScore;}}
-for(let i=fcBombs.length-1;i>=0;i--){const b=fcBombs[i];if(b.y>250){fcBombs.splice(i,1);}else if(b.x<fcCat.x+36&&b.x+22>fcCat.x&&b.y+22>fcCat.y&&b.y<fcCat.y+20){fcBombs.splice(i,1);fcLives--;document.getElementById('fc-lives').textContent=fcLives;if(fcLives<=0){endFishGame();return;}}}
-drawFishFrame();fcRaf=requestAnimationFrame(fcLoop);}
-function startFishGame(){fcScore=0;fcLives=3;fcFish=[];fcBombs=[];fcCat={x:140,y:220,w:40,h:20};fcSpawnTimer=0;fcLevel=1;fcRunning=true;document.getElementById('fc-score').textContent=0;document.getElementById('fc-lives').textContent=3;document.getElementById('fc-over').classList.remove('show');cancelAnimationFrame(fcRaf);fcLoop();}
-function stopFishGame(){fcRunning=false;cancelAnimationFrame(fcRaf);}
-function endFishGame(){fcRunning=false;if(fcScore>fcBest){fcBest=fcScore;localStorage.setItem('fc_best',fcBest);document.getElementById('fc-best').textContent=fcBest;}document.getElementById('fc-final-score').textContent=fcScore;document.getElementById('fc-over').classList.add('show');}
+const fishCanvas = document.getElementById('fishCanvas');
+const fctx = fishCanvas.getContext('2d');
+let fcRunning = false, fcScore = 0, fcLives = 3, fcBest = parseInt(localStorage.getItem('fc_best') || '0');
+let fcFish = [], fcBombs = [], fcCat = {x: 140, y: 200, w: 40, h: 20};
+let fcKeys = {}, fcRaf, fcSpawnTimer = 0, fcLevel = 1;
+
+document.getElementById('fc-best').textContent = fcBest;
+fishCanvas.width = 320; fishCanvas.height = 240;
+
+document.addEventListener('keydown', e => { fcKeys[e.key] = true; });
+document.addEventListener('keyup', e => { fcKeys[e.key] = false; });
+
+fishCanvas.addEventListener('mousemove', e => {
+  const rect = fishCanvas.getBoundingClientRect();
+  const tx = ((e.clientX - rect.left) / rect.width) * 320;
+  fcCat.x = Math.max(0, Math.min(280, tx - 20));
+});
+
+function spawnFish() {
+  fcFish.push({x: Math.random() * 290, y: -30, speed: 1.8 + Math.random() * 2.2 + fcLevel * 0.4, size: 22 + Math.random() * 16});
+}
+function spawnBomb() {
+  if (fcLevel > 1) fcBombs.push({x: Math.random() * 290, y: -30, speed: 1.6 + Math.random() * 2});
+}
+
+function drawFishFrame() {
+  fctx.clearRect(0, 0, 320, 240);
+  fctx.fillStyle = '#0A1F3D';
+  fctx.fillRect(0, 0, 320, 240);
+
+  // Water effect
+  for (let i = 0; i < 25; i++) {
+    fctx.fillStyle = 'rgba(255,255,255,0.12)';
+    fctx.fillRect(i * 13 + Math.sin(Date.now()/800 + i) * 2, 240 - (i % 6) * 12, 1.5, 1.5);
+  }
+
+  fcFish.forEach(f => {
+    fctx.font = f.size + 'px serif';
+    fctx.textAlign = 'center';
+    fctx.fillText('🐟', f.x + f.size/2, f.y + f.size/2);
+  });
+
+  fcBombs.forEach(b => {
+    fctx.font = '26px serif';
+    fctx.fillText('💣', b.x + 13, b.y + 13);
+  });
+
+  fctx.fillStyle = fcLives <= 1 ? '#FF5555' : '#F46A1A';
+  fctx.fillRect(fcCat.x, fcCat.y, 42, 18);
+  fctx.font = '26px serif';
+  fctx.fillText('😺', fcCat.x + 21, fcCat.y + 16);
+}
+
+function fcLoop() {
+  if (!fcRunning) return;
+  fcSpawnTimer++;
+  if (fcSpawnTimer % 35 === 0) spawnFish();
+  if (fcSpawnTimer % 75 === 0 && fcLevel > 1) spawnBomb();
+  if (fcSpawnTimer % 550 === 0) fcLevel++;
+
+  if (fcKeys['ArrowLeft'] || fcKeys['a']) fcCat.x = Math.max(0, fcCat.x - 6);
+  if (fcKeys['ArrowRight'] || fcKeys['d']) fcCat.x = Math.min(280, fcCat.x + 6);
+
+  fcFish.forEach(f => f.y += f.speed);
+  fcBombs.forEach(b => b.y += b.speed);
+
+  // Collision Fish
+  for (let i = fcFish.length - 1; i >= 0; i--) {
+    const f = fcFish[i];
+    if (f.y > 260) fcFish.splice(i, 1);
+    else if (f.x < fcCat.x + 38 && f.x + f.size > fcCat.x && f.y + f.size > fcCat.y && f.y < fcCat.y + 22) {
+      fcFish.splice(i, 1);
+      fcScore += 10;
+      document.getElementById('fc-score').textContent = fcScore;
+    }
+  }
+
+  // Collision Bombs
+  for (let i = fcBombs.length - 1; i >= 0; i--) {
+    const b = fcBombs[i];
+    if (b.y > 260) fcBombs.splice(i, 1);
+    else if (b.x < fcCat.x + 36 && b.x + 22 > fcCat.x && b.y + 22 > fcCat.y && b.y < fcCat.y + 22) {
+      fcBombs.splice(i, 1);
+      fcLives--;
+      document.getElementById('fc-lives').textContent = fcLives;
+      if (fcLives <= 0) { endFishGame(); return; }
+    }
+  }
+
+  drawFishFrame();
+  fcRaf = requestAnimationFrame(fcLoop);
+}
+
+function startFishGame() {
+  fcScore = 0; fcLives = 3; fcFish = []; fcBombs = []; fcCat.x = 140; fcSpawnTimer = 0; fcLevel = 1;
+  fcRunning = true;
+  document.getElementById('fc-score').textContent = 0;
+  document.getElementById('fc-lives').textContent = 3;
+  document.getElementById('fc-over').classList.remove('show');
+  cancelAnimationFrame(fcRaf);
+  fcLoop();
+}
+
+function stopFishGame() {
+  fcRunning = false;
+  cancelAnimationFrame(fcRaf);
+}
+
+function endFishGame() {
+  fcRunning = false;
+  if (fcScore > fcBest) {
+    fcBest = fcScore;
+    localStorage.setItem('fc_best', fcBest);
+    document.getElementById('fc-best').textContent = fcBest;
+  }
+  document.getElementById('fc-final-score').textContent = fcScore;
+  document.getElementById('fc-over').classList.add('show');
+}
 drawFishFrame();
 
 /* ==================== PAW MEMORY ==================== */
-const memEmojis=['🐟','🐾','😺','🐭','🎯','🧶','🐠','🌿'];
-let memCards=[],memFlipped=[],memMatched=0,memMoves=0,memLocked=false,memBest=parseInt(localStorage.getItem('mem_best')||'999');
-document.getElementById('mem-best').textContent=memBest===999?'-':memBest;
-function initMemory(){memMatched=0;memMoves=0;memFlipped=[];memLocked=false;document.getElementById('mem-pairs').textContent='0/8';document.getElementById('mem-moves').textContent='0';const arr=[...memEmojis,...memEmojis].sort(()=>Math.random()-.5);const grid=document.getElementById('memoryGrid');grid.innerHTML='';memCards=[];arr.forEach((em,i)=>{const d=document.createElement('div');d.className='mem-card face-down';d.dataset.val=em;d.dataset.idx=i;d.addEventListener('click',()=>flipCard(d));grid.appendChild(d);memCards.push(d);});}
-function flipCard(card){if(memLocked||card.classList.contains('matched')||card===memFlipped[0])return;card.classList.remove('face-down');card.classList.add('flipped');card.textContent=card.dataset.val;memFlipped.push(card);if(memFlipped.length===2){memMoves++;document.getElementById('mem-moves').textContent=memMoves;checkMatch();}}
-function checkMatch(){memLocked=true;const[a,b]=memFlipped;if(a.dataset.val===b.dataset.val){a.classList.add('matched');b.classList.add('matched');a.classList.remove('flipped');b.classList.remove('flipped');memMatched++;document.getElementById('mem-pairs').textContent=memMatched+'/8';memFlipped=[];memLocked=false;if(memMatched===8){setTimeout(()=>{if(memMoves<memBest){memBest=memMoves;localStorage.setItem('mem_best',memBest);document.getElementById('mem-best').textContent=memBest;}alert(`🎉 You won in ${memMoves} moves!`);},200);}}else{setTimeout(()=>{a.classList.add('face-down');a.classList.remove('flipped');a.textContent='';b.classList.add('face-down');b.classList.remove('flipped');b.textContent='';memFlipped=[];memLocked=false;},900);}}
+const memEmojis = ['🐟','🐾','😺','🐭','🎯','🧶','🐠','🌿'];
+let memCards = [], memFlipped = [], memMatched = 0, memMoves = 0, memLocked = false;
+let memBest = parseInt(localStorage.getItem('mem_best') || '999');
+
+document.getElementById('mem-best').textContent = memBest === 999 ? '-' : memBest;
+
+function initMemory() {
+  memMatched = 0; memMoves = 0; memFlipped = []; memLocked = false;
+  document.getElementById('mem-pairs').textContent = '0/8';
+  document.getElementById('mem-moves').textContent = '0';
+
+  const arr = [...memEmojis, ...memEmojis].sort(() => Math.random() - 0.5);
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML = '';
+  memCards = [];
+
+  arr.forEach((em, i) => {
+    const d = document.createElement('div');
+    d.className = 'mem-card face-down';
+    d.dataset.val = em;
+    d.dataset.idx = i;
+    d.addEventListener('click', () => flipCard(d));
+    grid.appendChild(d);
+    memCards.push(d);
+  });
+}
+
+function flipCard(card) {
+  if (memLocked || card.classList.contains('matched') || memFlipped.length >= 2) return;
+  card.classList.remove('face-down');
+  card.classList.add('flipped');
+  card.textContent = card.dataset.val;
+  memFlipped.push(card);
+
+  if (memFlipped.length === 2) {
+    memMoves++;
+    document.getElementById('mem-moves').textContent = memMoves;
+    checkMatch();
+  }
+}
+
+function checkMatch() {
+  memLocked = true;
+  const [a, b] = memFlipped;
+  if (a.dataset.val === b.dataset.val) {
+    a.classList.add('matched');
+    b.classList.add('matched');
+    memMatched++;
+    document.getElementById('mem-pairs').textContent = memMatched + '/8';
+    memFlipped = [];
+    memLocked = false;
+
+    if (memMatched === 8) {
+      setTimeout(() => {
+        if (memMoves < memBest) {
+          memBest = memMoves;
+          localStorage.setItem('mem_best', memBest);
+          document.getElementById('mem-best').textContent = memBest;
+        }
+        alert(`🎉 Amazing! You won in ${memMoves} moves!`);
+      }, 300);
+    }
+  } else {
+    setTimeout(() => {
+      a.classList.add('face-down'); a.classList.remove('flipped'); a.textContent = '';
+      b.classList.add('face-down'); b.classList.remove('flipped'); b.textContent = '';
+      memFlipped = [];
+      memLocked = false;
+    }, 850);
+  }
+}
 initMemory();
 
 /* ==================== WHACK A MOUSE ==================== */
-let wamRunning=false,wamScore=0,wamBest=parseInt(localStorage.getItem('wam_best')||'0'),wamTime=30,wamActiveHole=-1,wamHoleTimer,wamCountdown;
-document.getElementById('wam-best').textContent=wamBest;
-function startWhack(){wamScore=0;wamTime=30;wamRunning=true;document.getElementById('wam-score').textContent=0;document.getElementById('wam-time').textContent=30;clearAllHoles();popMole();wamCountdown=setInterval(()=>{wamTime--;document.getElementById('wam-time').textContent=wamTime;if(wamTime<=0){stopWhack(true);}},1000);}
-function stopWhack(natural=false){wamRunning=false;clearTimeout(wamHoleTimer);clearInterval(wamCountdown);clearAllHoles();if(natural){if(wamScore>wamBest){wamBest=wamScore;localStorage.setItem('wam_best',wamBest);document.getElementById('wam-best').textContent=wamBest;}setTimeout(()=>alert(`Game Over! Score: ${wamScore} 🐭`),100);}}
-function popMole(){if(!wamRunning)return;clearAllHoles();const h=Math.floor(Math.random()*9);wamActiveHole=h;document.getElementById('h'+h).classList.add('active');const delay=Math.max(600,1200-wamScore*10);wamHoleTimer=setTimeout(()=>{document.getElementById('h'+h).classList.remove('active');wamActiveHole=-1;popMole();},delay);}
-function whack(idx){if(!wamRunning||wamActiveHole!==idx)return;const hole=document.getElementById('h'+idx);hole.classList.remove('active');hole.classList.add('hit');setTimeout(()=>hole.classList.remove('hit'),200);wamScore++;document.getElementById('wam-score').textContent=wamScore;wamActiveHole=-1;clearTimeout(wamHoleTimer);popMole();}
-function clearAllHoles(){for(let i=0;i<9;i++){const h=document.getElementById('h'+i);if(h){h.classList.remove('active','hit');}}}
+let wamRunning = false, wamScore = 0, wamBest = parseInt(localStorage.getItem('wam_best') || '0'), wamTime = 30, wamActiveHole = -1, wamHoleTimer, wamCountdown;
+
+document.getElementById('wam-best').textContent = wamBest;
+
+function startWhack() {
+  wamScore = 0; wamTime = 30; wamRunning = true;
+  document.getElementById('wam-score').textContent = 0;
+  document.getElementById('wam-time').textContent = 30;
+  clearAllHoles();
+  popMole();
+  wamCountdown = setInterval(() => {
+    wamTime--;
+    document.getElementById('wam-time').textContent = wamTime;
+    if (wamTime <= 0) stopWhack(true);
+  }, 1000);
+}
+
+function stopWhack(natural = false) {
+  wamRunning = false;
+  clearTimeout(wamHoleTimer);
+  clearInterval(wamCountdown);
+  clearAllHoles();
+  if (natural) {
+    if (wamScore > wamBest) {
+      wamBest = wamScore;
+      localStorage.setItem('wam_best', wamBest);
+      document.getElementById('wam-best').textContent = wamBest;
+    }
+    setTimeout(() => alert(`Time's up! Final Score: ${wamScore} 🐭`), 150);
+  }
+}
+
+function popMole() {
+  if (!wamRunning) return;
+  clearAllHoles();
+  const h = Math.floor(Math.random() * 9);
+  wamActiveHole = h;
+  document.getElementById('h' + h).classList.add('active');
+  const delay = Math.max(550, 1350 - wamScore * 8);
+  wamHoleTimer = setTimeout(() => {
+    document.getElementById('h' + h).classList.remove('active');
+    wamActiveHole = -1;
+    popMole();
+  }, delay);
+}
+
+function whack(idx) {
+  if (!wamRunning || wamActiveHole !== idx) return;
+  const hole = document.getElementById('h' + idx);
+  hole.classList.remove('active');
+  hole.classList.add('hit');
+  setTimeout(() => hole.classList.remove('hit'), 180);
+  wamScore += 10;
+  document.getElementById('wam-score').textContent = wamScore;
+  wamActiveHole = -1;
+  clearTimeout(wamHoleTimer);
+  popMole();
+}
+
+function clearAllHoles() {
+  for (let i = 0; i < 9; i++) {
+    const h = document.getElementById('h' + i);
+    if (h) h.classList.remove('active', 'hit');
+  }
+}
 
 /* ==================== CART ==================== */
-function getCart(){return JSON.parse(localStorage.getItem('mm_cart')||'[]');}
-function saveCart(c){localStorage.setItem('mm_cart',JSON.stringify(c));}
-function updateCartCount(){const c=getCart();document.querySelectorAll('#cartCount').forEach(el=>el.textContent=c.reduce((s,i)=>s+i.qty,0));}
-function openCart(){document.getElementById('cartOverlay').classList.add('open');document.getElementById('cartModal').classList.add('open');renderCart();}
-function closeCart(){document.getElementById('cartOverlay').classList.remove('open');document.getElementById('cartModal').classList.remove('open');}
-function renderCart(){const c=getCart();const el=document.getElementById('cartItems');const footer=document.getElementById('cartFooter');if(c.length===0){el.innerHTML='<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Your cart is empty!</p></div>';footer.style.display='none';return;}footer.style.display='block';let total=0;el.innerHTML=c.map((item,i)=>{const sub=item.price*item.qty;total+=sub;return`<div class="cart-item"><div class="cart-item-emoji">${item.emoji||'🐱'}</div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-price">₹${item.price} × ${item.qty} = ₹${sub}</div></div><div class="cart-item-qty"><button class="qty-btn" onclick="changeQty(${i},-1)">−</button><span class="qty-num">${item.qty}</span><button class="qty-btn" onclick="changeQty(${i},1)">+</button></div></div>`;}).join('');document.getElementById('cartTotalPrice').textContent='₹'+total;}
-function changeQty(i,d){const c=getCart();c[i].qty+=d;if(c[i].qty<=0)c.splice(i,1);saveCart(c);renderCart();updateCartCount();}
-function addToCart(name,price,emoji){const c=getCart();const ex=c.find(i=>i.name===name);if(ex)ex.qty++;else c.push({name,price,emoji,qty:1});saveCart(c);updateCartCount();}
-function orderOnWhatsApp(){const c=getCart();if(!c.length){alert('Your cart is empty!');return;}let msg='🐱 *New Order from Meow Meow*\n\n';c.forEach(i=>{msg+=`• ${i.emoji||'🐾'} ${i.name} × ${i.qty} = ₹${i.price*i.qty}\n`;});const total=c.reduce((s,i)=>s+i.price*i.qty,0);msg+=`\n💰 *Grand Total: ₹${total}*\n\nPlease confirm my order! 😺`;window.open(`https://wa.me/918779841469?text=${encodeURIComponent(msg)}`);}
-window.addToCart=addToCart;
+function getCart() { return JSON.parse(localStorage.getItem('mm_cart') || '[]'); }
+function saveCart(c) { localStorage.setItem('mm_cart', JSON.stringify(c)); }
+function updateCartCount() {
+  const c = getCart();
+  document.querySelectorAll('#cartCount').forEach(el => el.textContent = c.reduce((s,i)=>s+i.qty,0));
+}
+function openCart() {
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartModal').classList.add('open');
+  renderCart();
+}
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartModal').classList.remove('open');
+}
+function renderCart() {
+  const c = getCart();
+  const el = document.getElementById('cartItems');
+  const footer = document.getElementById('cartFooter');
+  if (c.length === 0) {
+    el.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Your cart is empty!</p><p style="margin-top:8px;font-size:13.5px;">Add some goodies for your kitty.</p></div>';
+    footer.style.display = 'none';
+    return;
+  }
+  footer.style.display = 'block';
+  let total = 0;
+  el.innerHTML = c.map((item,i) => {
+    const sub = item.price * item.qty;
+    total += sub;
+    return `<div class="cart-item"><div class="cart-item-emoji">${item.emoji||'🐱'}</div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-price">₹${item.price} × ${item.qty} = ₹${sub}</div></div><div class="cart-item-qty"><button class="qty-btn" onclick="changeQty(${i},-1)">−</button><span class="qty-num">${item.qty}</span><button class="qty-btn" onclick="changeQty(${i},1)">+</button></div></div>`;
+  }).join('');
+  document.getElementById('cartTotalPrice').textContent = '₹' + total;
+}
+function changeQty(i,d) {
+  const c = getCart();
+  c[i].qty += d;
+  if (c[i].qty <= 0) c.splice(i,1);
+  saveCart(c);
+  renderCart();
+  updateCartCount();
+}
+function addToCart(name,price,emoji) {
+  const c = getCart();
+  const ex = c.find(i => i.name === name);
+  if (ex) ex.qty++;
+  else c.push({name,price,emoji,qty:1});
+  saveCart(c);
+  updateCartCount();
+}
+function orderOnWhatsApp() {
+  const c = getCart();
+  if (!c.length) { alert('Your cart is empty!'); return; }
+  let msg = '🐱 *New Order from Meow Meow*\n\n';
+  c.forEach(i => msg += `• ${i.emoji||'🐾'} ${i.name} × ${i.qty} = ₹${i.price*i.qty}\n`);
+  const total = c.reduce((s,i) => s + i.price*i.qty, 0);
+  msg += `\n💰 *Grand Total: ₹${total}*\n\nPlease confirm my order! 😺`;
+  window.open(`https://wa.me/918779841469?text=${encodeURIComponent(msg)}`);
+}
+window.addToCart = addToCart;
 updateCartCount();
 </script>
 
